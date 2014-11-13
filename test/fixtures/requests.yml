@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  requester_id: 1
+  accepter_id: 1
+  admin_id: 1
+  availability: false
+
+two:
+  requester_id: 1
+  accepter_id: 1
+  admin_id: 1
+  availability: false

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  time: MyString
+  admin_id: 1
+  employee_id: 1
+
+two:
+  time: MyString
+  admin_id: 1
+  employee_id: 1
