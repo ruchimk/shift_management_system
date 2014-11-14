@@ -9,4 +9,12 @@ class User < ActiveRecord::Base
     has_many :approved_requests, class_name: "Request", foreign_key: "admin_id"
     has_many :assigned_shifts, class_name: "Shift", foreign_key: "employee_id"
     has_many :managed_shifts, class_name: "Shift", foreign_key: "admin_id"
+
+  def self.admins
+    where(is_admin: true)
+  end
+
+  def self.employees
+    where(is_admin: false)
+  end
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
     get '/signup', to: 'registrations#new'
     post '/new_user', to: 'registrations#create', as: :create_user
     get '/add_employee', to: 'registrations#new_employee', as: :new_employee
+    post '/create_employee', to: 'registrations#create_employee', as: :create_employee
   end
 
   devise_for :users
