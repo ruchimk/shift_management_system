@@ -76,14 +76,23 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-ActionMailer::Base.smtp_settings = {
-  :user_name => 'your_sendgrid_username',
-  :password => 'your_sendgrid_password',
-  :domain => 'yourdomain.com',
-  :address => 'smtp.sendgrid.net',
+# ActionMailer::Base.smtp_settings = {
+#   :user_name => 'your_sendgrid_username',
+#   :password => 'your_sendgrid_password',
+#   :domain => 'yourdomain.com',
+#   :address => 'smtp.sendgrid.net',
+#   :port => 587,
+#   :authentication => :plain,
+#   :enable_starttls_auto => true
+# }
+config.action_mailer.smtp_settings = {
+  :address => 'smtp.gmail.com',
   :port => 587,
+  :domain => 'shiftable.com',
   :authentication => :plain,
-  :enable_starttls_auto => true
+  :enable_starttls_auto => true,
+  :user_name =>  ENV['GMAIL_EMAIL'],
+  :password =>  ENV['GMAIL_PASSWORD']
 }
 
 end

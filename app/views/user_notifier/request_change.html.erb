@@ -3,8 +3,13 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Thanks for signing up, <%= @user.name %>!</h1>
-    <p>Thanks for joining and have a great day! Now sign in and do awesome things!</p>
+    <h1><%= @user.name %> would like to request a shift change</h1>
+    <br/>
+    <ol>
+      <li>Shift-change: @request.date, </li>
+      <li></li>
+      <li></li>
+    </ol>
 
     <p><%= link_To "User Profile", @user %></p>
   </body>

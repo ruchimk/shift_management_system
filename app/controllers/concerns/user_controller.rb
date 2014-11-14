@@ -1,4 +1,3 @@
-
 class UsersController < ApplicationController
   def create
     # Create the user from params
@@ -6,7 +5,7 @@ class UsersController < ApplicationController
     if @user.save
       # Deliver the signup email
       UserNotifier.send_signup_email(@user).deliver
-      redirect_to(@user, :notice => 'Signed up successfully!')
+      redirect_to(@user, :notice => 'User created')
     else
       render :action => 'new'
     end
