@@ -2,9 +2,9 @@
 require 'spec_helper'
 
 describe UserNotifier do
-  describe 'instructions' do
+  describe 'welcome_email' do
     let(:user) { mock_model User, name: 'Lucas', email: 'lucas@email.com' }
-    let(:mail) { UserNotifier.send_signup_email(user) }
+    let(:mail) { UserNotifier.welcome_email(user) }
 
     it 'renders the subject' do
       expect(mail.subject).to eql('Thanks for signing up for Shiftable!')
@@ -15,15 +15,15 @@ describe UserNotifier do
     end
 
     it 'renders the sender email' do
-      expect(mail.from).to eql(['noreply@company.com'])
+      expect(mail.from).to eql(['shiftable@gmail.com'])
     end
 
     it 'assigns @user' do
       expect(mail.body.encoded).to match(user)
     end
-
-    it 'assigns @confirmation_url' do
-      expect(mail.body.encoded).to match("http://aplication_url/#{user.id}/confirmation")
-    end
   end
+
+
+
+
 end
