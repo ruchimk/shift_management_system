@@ -5,4 +5,11 @@ class User < ActiveRecord::Base
     has_many :approved_requests, class_name: "Request", foreign_key: "admin_id"
     has_many :assigned_shifts, class_name: "Shift", foreign_key: "employee_id"
     has_many :managed_shifts, class_name: "Shift", foreign_key: "admin_id"
+
+
+ def welcome_email
+  UserNotifier.test_email.deliver()
+end
+
+
 end
