@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
     has_many :managed_shifts, class_name: "Shift", foreign_key: "admin_id"
 
 
- def welcome_email
-  UserNotifier.test_email.deliver()
+ def send_welcome_email
+  UserNotifier.welcome_email.deliver()
 end
 
 

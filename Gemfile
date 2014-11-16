@@ -29,7 +29,11 @@ gem 'spring',        group: :development
 group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'pry-rails'
 end
+
+
 
 
 # Use ActiveModel has_secure_password

@@ -1,4 +1,3 @@
-
 class UsersController < ApplicationController
   def create
     # Create the user from params

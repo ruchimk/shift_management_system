@@ -5,7 +5,8 @@ class UserNotifier < ActionMailer::Base
   def welcome_email(user)
     @user = user
     mail( to: @user.email,
-    subject: 'Thanks for signing up for Shiftable!' )
+    subject: 'Thanks for signing up for Shiftable!'
+    sent_on: Time.now )
   end
 
 # send an email to all admins when user requests shift change
@@ -30,6 +31,4 @@ class UserNotifier < ActionMailer::Base
     from: Proc.new { current_user.company.admins.pluck(:email) },
     subject: 'You have been reassigned a shift, please check your schedule' )
   end
-
-
 end
