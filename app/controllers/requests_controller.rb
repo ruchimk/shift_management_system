@@ -1,6 +1,6 @@
 class RequestsController < ApplicationController
-
-	before_filter :authorize
+	before_filter :authenticate_user!
+	# before_filter :authorize
 
 	def index
 		@requests = Request.all
@@ -14,7 +14,7 @@ class RequestsController < ApplicationController
 	end
 
 	def create
-		@request = Request.new(request_params)
+		@request = current_user.requests.build(params[:request])
 
 		@request.save
 		redirect_to @request
@@ -48,6 +48,8 @@ class RequestsController < ApplicationController
 		redirect_to root_path
 	end
 	private
+
+	
 	def change_shift_params
 		params.require(:request).permit(:shift_id, :requester_id, :availability)
 	end

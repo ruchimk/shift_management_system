@@ -1,1 +1,19 @@
 <h1>Listing all Requests:</h1>
+
+<table>
+  <tr>
+    <th>All Requests</th>
+    <th colspan="3"></th>
+  </tr>
+  
+    <% @requests.each do |request| %>
+      <tr>
+        <td><%= request.shift_id %></td>
+        <td><%= link_to 'Show', request_path(request) %></td>
+        <% if current_user.try(:is_admin) %>
+        <td><%= link_to 'Destroy', request_path(request),
+          method: :delete, data: { confirm: 'Are you sure you wish to delete this?' } %></td>
+        <% end %>
+      </tr>
+    <% end %>
+</table>
