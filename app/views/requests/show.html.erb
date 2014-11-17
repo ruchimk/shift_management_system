@@ -33,14 +33,13 @@
 		    <%= f.submit "Pick Up Shift"%>
 		  </div>
 	<% end %>
-	
 <% end %>
 
 <% if current_user.try(:is_admin) %>
-	<%= form_for @request, url: approve_shift_path(@request) do |f| %>
-		<div class="field">
-			<%= f.hidden_field(:admin_id, value: current_user.id) %>
-			<%= f.submit "Approve Request"%>
-		</div>
+		<%= form_for @request, url: approve_shift_path(@request) do |f| %>
+			<div class="field">
+				<%= f.hidden_field(:admin_id, value: current_user.id) %>
+				<%= f.submit "Approve Request"%>
+			</div>
 	<% end %>
 <% end %>
