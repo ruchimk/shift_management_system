@@ -3,7 +3,7 @@
 <%= form_for @request, url: make_shift_available_path do |f| %>
 
   <div class="field">
-    <input type="date" name="date">
+    <%= date_field_tag 'date', nil, placholder: "Date"  %>
     <%= text_field_tag 'time', nil, placholder: "Time"  %>
   </div>
   	<%= f.hidden_field(:accepter_id, value: current_user.id) %>
