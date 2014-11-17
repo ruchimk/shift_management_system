@@ -7,15 +7,12 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  get 'request/index'
 
-  get 'request/show'
+  resources :request
 
   get 'company/new'
 
   get 'welcome/dashboard'
-
-  
 
   root "welcome#splash"
 
