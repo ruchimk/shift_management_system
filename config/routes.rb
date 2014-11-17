@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  post "/change_shift", to: 'requests#change_shift', as: 'change_shift'
+  post "/make_shift_available", to: 'requests#make_shift_available', as: 'make_shift_available'
+
   devise_scope :user do
     get '/signup', to: 'registrations#new'
     post '/new_user', to: 'registrations#create', as: :create_user
@@ -8,7 +12,9 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :request
+  resources :requests
+
+  get '/users/sign_in', to: 'sessions#create', as: 'login'
 
   get 'company/new'
 
