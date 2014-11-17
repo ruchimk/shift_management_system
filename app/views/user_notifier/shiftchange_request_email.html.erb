@@ -1,4 +1,4 @@
-<!-- # send a response email to user by admins when user requests shift change -->
+<!-- # send a email to admins by user when user requests shift change -->
 
 <html>
   <head>
@@ -9,11 +9,8 @@
     <br/>
     <ol>
       <li>Shift-change: @request.shift_id, </li>
-      <li>Request Created at: @request.create_at</li>
-      <li>Available employees: </li>
-      <!-- need help with these fields -->
+      <li>Request Created at: @request.created_at</li>
+      <li><%= link_to 'localhost:3000/welcome/dashboard' %></li>
     </ol>
-<!--
-    <p><%= link_to "User Profile", @user %></p> -->
   </body>
 </html>

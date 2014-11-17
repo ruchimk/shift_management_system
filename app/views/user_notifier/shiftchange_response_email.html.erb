@@ -7,12 +7,11 @@
   <body>
     <h1>Status update regarding your shift change request</h1>
     <p>
-      <% if current_user.request.accepted #need to defind request methods
-        {
-        puts "Your request has been accepted!"
-      else{
-        puts "Your shift change request was denied"}
-      }  %>
+      <% if @request.accepted %>
+       <p>Your request has been accepted!</p>
+      <% else %>
+        <p>Your shift change request was denied</p>
+      <% end %>
       <br>
     </p>
     <p>Please contact the admins if you have any questions.</p>

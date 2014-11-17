@@ -1,2 +1,15 @@
-<h1>Request#index</h1>
-<p>Find me in app/views/request/index.html.erb</p>
+<h1>Listing all Requests:</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+  </tr>
+ 
+  <% @requests.each do |request| %>
+    <tr>
+      <td><%= request.title %></td>
+      <td><%= request.text %></td>
+    </tr>
+  <% end %>
+</table>

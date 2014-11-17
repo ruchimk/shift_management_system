@@ -1,13 +1,20 @@
 Rails.application.routes.draw do
-  get 'request/index'
+  devise_scope :user do
+    get '/signup', to: 'registrations#new'
+    post '/new_user', to: 'registrations#create', as: :create_user
+    get '/add_employee', to: 'registrations#new_employee', as: :new_employee
+    post '/create_employee', to: 'registrations#create_employee', as: :create_employee
+  end
 
-  get 'request/show'
+  devise_for :users
+
+  resources :request
 
   get 'company/new'
 
   get 'welcome/dashboard'
 
-  get 'welcome/splash'
+  root "welcome#splash"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def create
     # Create the user from params
     @user = User.new(params[:user])
@@ -10,4 +11,7 @@ class UsersController < ApplicationController
       render :action => 'new'
     end
   end
+
+
+
 end
