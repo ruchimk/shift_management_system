@@ -20,18 +20,27 @@
 </p>	
 
 <% if @request.availability && @request.accepter != current_user %>
-	<%= form_for @request, url: give_shift_path(@request) do |f| %>
-	  <div class="field">
-	  	<%= f.hidden_field(:requester_id, value: current_user.id) %>
-	    <%= f.submit "Give Shift"%>
-	  </div>
+		<%= form_for @request, url: give_shift_path(@request) do |f| %>
+		  <div class="field">
+		  	<%= f.hidden_field(:requester_id, value: current_user.id) %>
+		    <%= f.submit "Give Shift"%>
+		  </div>
+		<% end %>
+	<% elsif (!@request.availability && @request.requester != current_user) %>
+		<%= form_for @request, url: pick_up_shift_path(@request) do |f| %>
+		  <div class="field">
+		  	<%= f.hidden_field(:accepter_id, value: current_user.id) %>
+		    <%= f.submit "Pick Up Shift"%>
+		  </div>
 	<% end %>
-<% elsif (!@request.availability && @request.requester != current_user) %>
-	<%= form_for @request, url: pick_up_shift_path(@request) do |f| %>
-	  <div class="field">
-	  	<%= f.hidden_field(:accepter_id, value: current_user.id) %>
-	    <%= f.submit "Pick Up Shift"%>
-	  </div>
-	<% end %>
+	
 <% end %>
 
+<% if current_user.try(:is_admin) %>
+	<%= form_for @request, url: approve_shift_path(@request) do |f| %>
+		<div class="field">
+			<%= f.hidden_field(:admin_id, value: current_user.id) %>
+			<%= f.submit "Approve Request"%>
+		</div>
+	<% end %>
+<% end %>

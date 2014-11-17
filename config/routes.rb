@@ -2,8 +2,10 @@ Rails.application.routes.draw do
 
   post "/change_shift", to: 'requests#change_shift', as: 'change_shift'
   post "/make_shift_available", to: 'requests#make_shift_available', as: 'make_shift_available'
-  post "/pick_up_shift/:id", to: 'requests#pick_up_shift', as: :pick_up_shift
-  post "/give_shift/:id", to: 'requests#give_shift', as: :give_shift
+  patch "/pick_up_shift/:id", to: 'requests#pick_up_shift', as: :pick_up_shift
+  patch "/give_shift/:id", to: 'requests#give_shift', as: :give_shift
+  patch "/approve_shift/:id", to: 'requests#approve_shift', as: :approve_shift
+
   devise_scope :user do
     get '/signup', to: 'registrations#new'
     post '/new_user', to: 'registrations#create', as: :create_user

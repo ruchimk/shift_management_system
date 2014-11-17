@@ -47,9 +47,41 @@ class RequestsController < ApplicationController
 		@request.save
 		redirect_to root_path
 	end
-	private
 
-	
+	def pick_up_shift
+		@request = Request.find(params[:id])
+		@request.update(pick_up_shift_params)
+
+		redirect_to root_path
+	end
+
+	def give_shift
+		@request = Request.find(params[:id])
+		@request.update(give_shift_params)
+
+		redirect_to root_path
+	end
+
+	def approve_shift
+		@request = Request.find(params[:id])
+		@request.update(approve_shift_params)
+
+		redirect_to root_path
+	end
+
+	private
+	def pick_up_shift_params
+		params.require(:request).permit(:accepter_id)
+	end
+
+	def give_shift_params
+		params.require(:request).permit(:requester_id)
+	end
+
+	def approve_shift_params
+		params.require(:request).permit(:admin_id)
+	end
+
 	def change_shift_params
 		params.require(:request).permit(:shift_id, :requester_id, :availability)
 	end
