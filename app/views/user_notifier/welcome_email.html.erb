@@ -3,10 +3,10 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to shiftable.com, <%= @user.name %>!</h1>
+    <h1>Welcome to shiftable.com, <%= current_user.first_name %>!</h1>
     <p>
       You have successfully signed up to shiftable.com,
-      your username is: <%= @user.email %>.<br>
+      your username is: <%= current_user.email %>.<br>
     </p>
     <p>Thanks for joining and have a great day!</p>
   </body>
