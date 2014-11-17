@@ -23,10 +23,11 @@ class UserNotifier < ActionMailer::Base
     subject: 'Status update regarding shift change request' )
   end
 
-#   # send a reassignment email to user by admins when user requests shift change
-#   def shift_reassign_email(user)
-#     mail( to: user.email,
-#     from: user.company.users.where(is_admin:true) },
-#     subject: 'You have been reassigned a shift, please check your schedule' )
-#   end
+  # send a reassignment email to user by admins when user requests shift change
+  def shift_reassign_email(user)
+    @user = user
+    mail( to: user.email,
+    from: user.company.users.where(is_admin:true) },
+    subject: 'You have been reassigned a shift, please check your schedule' )
+  end
 end

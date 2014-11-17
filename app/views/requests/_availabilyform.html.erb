@@ -1,0 +1,14 @@
+<h1>Availability Request Form:</h1>
+
+<%= form_for @request, url: make_shift_available_path do |f| %>
+
+  <div class="field">
+    <input type="date" name="date">
+    <%= text_field_tag 'time', nil, placholder: "Time"  %>
+  </div>
+  	<%= f.hidden_field(:accepter_id, value: current_user.id) %>
+  	<%= f.hidden_field(:availability, value: true) %>
+  <div class="field">
+    <%= f.submit %>
+  </div>
+<% end %>
