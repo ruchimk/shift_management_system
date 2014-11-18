@@ -1,0 +1,126 @@
+.container_dash{
+    width:1000px;
+    position:absolute;
+    left:50%;
+    margin-left:-500px;
+    background-color: #fff;
+    color:#505050;
+}
+.left_cont{
+    width:250px;
+    height:100%;
+    background-color: #404041;
+}
+.request_btn, .available_btn{
+    height:30px;
+    border:0;
+    width:200px;
+    font-family:helveticaNeue-light;
+    font-size:11pt;
+    padding:5px 10px;
+    color:#fff;
+    margin:2px 0 0 25px;
+}
+.text_area_box{
+    border-top:5px solid #939598;
+    border-bottom:3px solid #939598;
+    width:180px;
+    height:140px;
+    font-family:helveticaNeue-light;
+    font-size:10pt;
+    padding:5px 10px;
+    text-align: top;
+    color:#fff;
+    margin:25px;
+    background-color:#404041;
+    color:#ccc;
+    overflow:scroll;
+}
+h2.textarea{
+    margin-top:0;
+    font-family: inherit;
+    font-weight:normal;
+}
+p.textarea{
+    margin-top:0;
+}
+.btn_shift_change{
+    width:100px;
+    height:30px;
+    border:0;
+    border-radius: 3px;
+    padding:3px;
+    margin:-60px 0 0 120px;
+    font-family:helveticaNeue-thin;
+    font-size:12pt;
+    background-color:#009dff;
+    transition:background 1s;
+    color:#fff;
+}
+
+.request_btn:hover{
+    background-color: #30C8DF;
+}
+.available_btn:hover{
+    background-color: #A6E22D;
+}
+.request_btn{
+    background-color:#30ABDF;
+}
+.available_btn{
+    background-color: #8DC449;
+}
+.avatar{
+    width:67px;
+    height:67px;
+    margin:30px;
+}
+.admin_name{
+    color:white;
+    position:absolute;
+    margin:30px 0 0 -10px;
+}
+.right_cont, .left_cont{
+    float:left;
+}
+.right_cont{
+    width:750px;
+    background-color:#eeeeee;
+    height:100%;
+}
+.notify{
+    float:right;
+    margin-right:60px;
+    width: 137px;
+    background-color:#505050;
+    color:#ccc;
+    padding: 5px 0px 7px 9px;
+    cursor:pointer;
+    border-bottom-right-radius: 0.3em;
+    background-position:20px;
+}
+#note:before{
+    position:fixed;
+    width: 30px;
+    height: 30px;
+    margin: -5px -39px;
+    content:"";
+    background-size: 30px 28px;
+    background-image:url('../images/ding.png');
+    border-bottom-left-radius: 0.3em;
+    background-color: #EC423D;
+    background-position:0px;
+    transition:background-position .3s, background-color .3s;
+}
+
+#note:hover:before{
+    background-position: 0px 30px;
+    background-color:#ff9c00;
+}
+.line{
+    height:1px;
+    width:700px;
+    margin:180px 0 50px 20px;
+    background-color:#ccc;
+
+}

@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<% if current_user %>
+ 	 <div>
+ 	 	Signed in as <%= current_user.first_name %>
+ 	 	<%= link_to "<button>Log Out</button>".html_safe, destroy_user_session_path, method: "DELETE" %>
+ 	 	<%= link_to "<button>Home</button>".html_safe, root_path %>
+ 	</div>
+	<% end %>
   <title>ShiftManagement</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
