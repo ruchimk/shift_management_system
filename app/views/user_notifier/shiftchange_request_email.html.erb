@@ -1,0 +1,16 @@
+<!-- # send a email to admins by user when user requests shift change -->
+
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @user.name %> would like to request a shift change</h1>
+    <br/>
+    <ol>
+      <li>Shift-change: @request.shift_id, </li>
+      <li>Request Created at: @request.created_at</li>
+      <li><%= link_to 'localhost:3000/welcome/dashboard' %></li>
+    </ol>
+  </body>
+</html>

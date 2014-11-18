@@ -1,6 +1,5 @@
 class RequestsController < ApplicationController
 	before_filter :authenticate_user!
-	# before_filter :authorize
 
 	def index
 		@requests = Request.all
@@ -14,7 +13,7 @@ class RequestsController < ApplicationController
 	end
 
 	def create
-		@request = current_user.requests.build(params[:request])
+		@request = Request.new(request_params)
 
 		@request.save
 		redirect_to @request

@@ -4,9 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/carousel.css">
 </head>
 
 <body>
@@ -17,14 +14,14 @@
         <div class="signin" id="users_profile_image">Sign in</div>
         <div class="signin" id="users_profile_image"><a href="/signup">Sign Up</a></div>
         <div class="signin_popup">
-            <form name="login" class="popup_login_form">
-                <span class="input_label">Username</span>
-                <input type="text" class="g_inpt" name="userid" />
+            <%= form_for(:user, as: :user, url: session_path(:user), html: {class: "popup_login_form"}) do |f| %>
+                <span class="input_label">Email</span>
+                <%= f.email_field :email, class: "g_inpt" %>
                 <span class="input_label">Password</span>
-                <input type="password" class="g_inpt" name="pswrd" />
-                <input type="button" class="btn" onclick="check(this.form)" value="Login" />
+                <%= f.password_field :password, class: "g_inpt" %>
+                <button type="sumbit" class="btn" value="Login">Log in</button>
                 <input type="reset" class="btn abort" value="Cancel" />
-            </form>
+            <% end %>   
         </div>
     </div>
     <!-- the content here copied to temp01.html in temp folder -->
@@ -83,9 +80,6 @@
     </div>
 
     <!-- javascript -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/carousel.js"></script>
-    <script src="js/main.js"></script>
 </body>
 
 </html>
