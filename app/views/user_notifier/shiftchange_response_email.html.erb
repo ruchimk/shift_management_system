@@ -1,0 +1,19 @@
+<!-- # send a response email to user by admins when user requests shift change -->
+
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Status update regarding your shift change request</h1>
+    <p>
+      <% if @request.accepted %>
+       <p>Your request has been accepted!</p>
+      <% else %>
+        <p>Your shift change request was denied</p>
+      <% end %>
+      <br>
+    </p>
+    <p>Please contact the admins if you have any questions.</p>
+  </body>
+</html>

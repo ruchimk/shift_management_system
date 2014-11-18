@@ -44,7 +44,6 @@ function check(form) { /*function to check userid & password*/
 $(function() {
     animate_popup();
     animate_slogan();
-    carousel_engine()
 });
 
 

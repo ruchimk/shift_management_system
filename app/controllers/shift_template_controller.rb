@@ -1,0 +1,2 @@
+class ShiftTemplateController < ApplicationController
+end
