@@ -6,6 +6,13 @@ class Company < ActiveRecord::Base
     	users.admins
     end
 
+    def admin_emails
+      email_array = []
+      admins.each do |admin|
+        email_array << admin.email
+      end
+      email_array
+    end
     def employees
     	users.employees
     end

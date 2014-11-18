@@ -9,19 +9,19 @@ class UserNotifier < ActionMailer::Base
     sent_on: Time.now )
   end
 
-# # send an email to all admins when user requests shift change
-#   def shiftchange_request_email(user)
-#     @user = user
-#     mail(to: user.company.users.where(is_admin:true) },
-#     subject: "#{@user.first_name} Requested a Shift Change" )
-#   end
+# send an email to all admins when user requests shift change
+  def shiftchange_request_email(user)
+    @user = user
+    mail(to: Proc.new{user.admins.admin_emails},
+    subject: "#{@user.first_name} Requested a Shift Change" )
+  end
 
 # # send a response email to user by admins when user requests shift change
-#   def shiftchange_response_email(user)
-#     @user = user
-#     mail( to: user.email,
-#     subject: 'Status update regarding shift change request' )
-#   end
+  def shiftchange_response_email(user)
+    @user = user
+    mail( to: user.email,
+    subject: 'Status update regarding shift change request' )
+  end
 
 #   # send a reassignment email to user by admins when user requests shift change
 #   def shift_reassign_email(user)

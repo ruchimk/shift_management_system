@@ -1,4 +1,9 @@
 Status update regarding your shift change request
 ===============================================
+  <% if @request.approve_shift %>
+       Your request has been approved!
+  <% else %>
+      Your shift change request was denied
+ <% end %>
 
-
+  Please contact the admins if you have any questions.

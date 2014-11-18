@@ -7,8 +7,8 @@
   <body>
     <h1>Status update regarding your shift change request</h1>
     <p>
-      <% if @request.accepted %>
-       <p>Your request has been accepted!</p>
+      <% if @request.approve_shift %>
+       <p>Your request has been approved!</p>
       <% else %>
         <p>Your shift change request was denied</p>
       <% end %>
