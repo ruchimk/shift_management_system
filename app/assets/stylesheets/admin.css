@@ -36,6 +36,19 @@
     color:#ccc;
     overflow:scroll;
 }
+.date_box{
+    border-top:5px solid #939598;
+    border-bottom:3px solid #939598;
+    width:180px;
+    height:140px;
+    font-family:helveticaNeue-light;
+    font-size:10pt;
+    padding:5px 10px;
+    text-align: top;
+    margin:25px;
+    background-color:#404041;
+    color:#ccc;
+}
 h2.textarea{
     margin-top:0;
     font-family: inherit;

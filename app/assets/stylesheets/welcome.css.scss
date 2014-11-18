@@ -8,14 +8,14 @@
        margin: 0 auto;
        }
 
-   #external-events {
+ /*  #external-events {
        float: left;
        width: 150px;
        padding: 0 10px;
        border: 1px solid #ccc;
        background: #eee;
        text-align: left;
-       }
+       }*/
 
    #external-events h4 {
        font-size: 16px;
@@ -43,7 +43,25 @@
        vertical-align: middle;
        }
 
-   #calendar {
-       float: right;
-       width: 100%;
+       #calendar {
+         float: right;
+         padding: 20px 40px;
+
+       }
+       .fc-day-header {
+         background-color: #ccc;
+       }
+
+       .fc-toolbar{
+         padding-bottom:30px;
+         border-bottom:1px solid #ccc;
+         margin-bottom:20px;
+       }
+       .fc-left>h2{
+        font-family:helveticaNeue!important;
+        font-weight: lighter;
+        font-size: 18pt;
+       }
+       .fc-unthemed .fc-today{
+        background-color: #9BBEED;
        }
