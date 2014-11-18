@@ -31,6 +31,9 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'pry-rails'
+  gem "guard-rspec"
+  gem 'faker', '~> 1.4.3'
+  gem 'rspec-activemodel-mocks'
 end
 
 
@@ -47,10 +50,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-
-gem "rspec-rails", :group => [:test, :development]
-group :test do
-  gem "factory_girl_rails"
-  gem "capybara"
-  gem "guard-rspec"
-end

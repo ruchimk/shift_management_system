@@ -1,5 +1,5 @@
 # spec/mailers/notifier_spec.rb
-require 'spec_helper'
+require 'rails_helper'
 
 describe UserNotifier do
   describe 'welcome_email' do
@@ -22,8 +22,4 @@ describe UserNotifier do
       expect(mail.body.encoded).to match(user)
     end
   end
-
-
-
-
 end
