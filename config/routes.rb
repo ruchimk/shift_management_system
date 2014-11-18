@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   get 'company/new'
 
-  get 'welcome/dashboard'
+  get '/dashboard', to: 'welcome#dashboard', as: :dashboard
 
   root "welcome#splash"
 

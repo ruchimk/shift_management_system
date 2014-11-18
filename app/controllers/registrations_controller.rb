@@ -8,6 +8,11 @@ class RegistrationsController < Devise::RegistrationsController
     render "devise/registrations/new_employee"
   end
 
+  def new
+    @user = User.new
+    render "welcome/signup_page"
+  end
+
   def create
     build_resource(sign_up_params)
 
