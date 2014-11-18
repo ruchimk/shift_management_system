@@ -23,4 +23,16 @@ class User < ActiveRecord::Base
     UserNotifier.welcome_email(self).deliver()
   end
 
+  def assigned_shifts_hash
+    assigned_shift_array = []
+    assigned_shifts.each do |shift|
+      shift_hash = {
+        time_string: shift.time_string,
+        date: shift.date,
+        id: shift.id
+      }
+      assigned_shift_array << shift_hash
+    end
+    assigned_shift_array
+  end
 end

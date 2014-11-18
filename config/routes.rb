@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  get "/assigned_shifts/:id", to: "users#assigned_shifts", as: :assigned_shifts
   post "/change_shift", to: 'requests#change_shift', as: 'change_shift'
   post "/make_shift_available", to: 'requests#make_shift_available', as: 'make_shift_available'
   patch "/pick_up_shift/:id", to: 'requests#pick_up_shift', as: :pick_up_shift

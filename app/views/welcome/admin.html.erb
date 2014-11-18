@@ -32,6 +32,11 @@
                 <div class='external-event' data-shift-time="3pm - 8pm">3pm - 8pm</div>
                 <div class='external-event' data-shift-time="8pm - 12am">8pm - 12am</div>
             </div>
+            <ul>
+                <% current_user.assigned_shifts.each do |shift| %>
+                <li><%=shift.shift_template.start_time %> on <%= shift.date  %> </li>
+                <% end %>
+            </ul>
         </div>
         <div class="right_cont">
             <div class="notify" id="note">
@@ -45,7 +50,9 @@
             <div class="line"></div>
         </div>
     </div>
-
+    <script type="text/javascript">
+        var userID = <%= current_user.id  %>;
+    </script>
     <!-- javascript -->
 </body>
 

@@ -80,6 +80,14 @@ function ready() {
 
       }
   });
+  
+  $.getJSON("/assigned_shifts/"+userID+".json", function (data) {
+    for (var i = 0, shiftLength = data.length, shift, shift_p; i < shiftLength; i++) {
+      shift = data[i]
+      shift_p = $("<p class='external-event' data-shift-time='"+shift.id+"'>" + shift.time_string + "</p>")
+      $(".fc-day[data-date='"+shift.date+"']").append(shift_p)
+    }
+  })
 }
 
 $(document).ready(ready);
