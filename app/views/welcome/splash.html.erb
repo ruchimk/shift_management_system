@@ -1,2 +1,13 @@
-<h1>Welcome#splash</h1>
-<p>Find me in app/views/welcome/splash.html.erb</p>
+<h1>Welcome to Shiftable</h1>
+
+<% if current_user %>
+<%= link_to "Log out", destroy_user_session_path, method: "DELETE"  %>
+<%= link_to 'Pending Requests', controller: 'requests' %>
+<%= link_to 'New Request', new_request_path %>
+<% else %> 
+<%= link_to "Sign up your Company", "/signup" %>
+<%= link_to "Login", "/users/sign_in" %>
+<% end %>
+<% if current_user.try(:is_admin) %>
+<%= link_to "Add Employee", new_employee_path, method: "get"  %>
+<% end %>

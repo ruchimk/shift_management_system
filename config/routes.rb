@@ -1,13 +1,29 @@
 Rails.application.routes.draw do
-  get 'request/index'
 
-  get 'request/show'
+  post "/change_shift", to: 'requests#change_shift', as: 'change_shift'
+  post "/make_shift_available", to: 'requests#make_shift_available', as: 'make_shift_available'
+  patch "/pick_up_shift/:id", to: 'requests#pick_up_shift', as: :pick_up_shift
+  patch "/give_shift/:id", to: 'requests#give_shift', as: :give_shift
+  patch "/approve_shift/:id", to: 'requests#approve_shift', as: :approve_shift
+
+  devise_scope :user do
+    get '/signup', to: 'registrations#new'
+    post '/new_user', to: 'registrations#create', as: :create_user
+    get '/add_employee', to: 'registrations#new_employee', as: :new_employee
+    post '/create_employee', to: 'registrations#create_employee', as: :create_employee
+  end
+
+  devise_for :users
+
+  resources :requests
+
+  get '/users/sign_in', to: 'sessions#create', as: 'login'
 
   get 'company/new'
 
   get 'welcome/dashboard'
 
-  get 'welcome/splash'
+  root "welcome#splash"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
