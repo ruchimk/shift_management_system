@@ -15,6 +15,8 @@
     <div class="container tall">
         <div class="signup_container">
         <%= form_for(resource, as: :user, url: create_user_path, html: {class: "form01"}) do |f| %>
+        <%= devise_error_messages! %>
+        <h2 class="label">Sign Up your Company</h2>
             <span class="label">Company Name:</span>
             <%= text_field_tag :company_name, nil, class: "g_inpt" %>
             <span class="label">Email</span>
