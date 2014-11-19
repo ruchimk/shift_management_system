@@ -1,0 +1,18 @@
+Searching 536 files for ":avatar_file_name"
+
+/Users/ruchimalik/dev/shift_management_system/app/controllers/registrations_controller.rb:
+   75      company = Company.create(name:params[:company_name])
+   76      params[:user][:company_id] = company.id
+   77:     params.require(:user).permit(:first_name, :last_name, :is_admin, :company_id, :email, :password, :password_confirmation, :avatar)
+   78    end
+   79
+
+/Users/ruchimalik/dev/shift_management_system/app/views/welcome/signup_page.html.erb:
+   34              <%= f.text_field :last_name, class: "g_inpt"  %>
+   35              <span class="label">Profile Picture:</span>
+   36:             <%= f.label :avatar , class: "g_inpt" %><br />
+   37:              <%= f.file_field :avatar %>
+   38              <span class="label">Password:</span>
+   39              <%= f.password_field :password, class: "g_inpt" %>
+
+3 matches across 2 files

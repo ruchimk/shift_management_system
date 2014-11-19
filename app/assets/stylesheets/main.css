@@ -83,7 +83,6 @@ body{
 .content-right{
     width:25%;
     float:left;
-    border-left:1px solid #eee;
     height:30px;
     padding:20px;
     margin-left:30px;
@@ -167,6 +166,28 @@ color:#8D8D8D;
 }
 a:active {
 color: #ccc;
+}
+.team{
+}
+.team li{
+  list-style-type: none;
+  margin:10px 0 0 -35px;
+  font-size:12px;
+  height:30px;
+  padding:5px 5px 0 10px;
+}
+.team li a{
+  text-decoration: none;
+  font-size:1.2em;
+  color:#505050;
+  font-weight:bold;
+}
+.team li:hover{
+  background:#eee;
+}
+
+.not_bold{
+font-weight: normal;
 }
 .logout a:link { color: #ccc; }
 .logout a:visited { color: #ccc; }

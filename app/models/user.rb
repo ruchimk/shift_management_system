@@ -11,15 +11,9 @@ class User < ActiveRecord::Base
   has_many :assigned_shifts, class_name: "Shift", foreign_key: "employee_id"
   has_many :managed_shifts, class_name: "Shift", foreign_key: "admin_id"
 
-  has_attached_file :avatar, styles: {
-    thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>'
-  }
 
-  # Validate the attached image is image/jpg, image/png, etc
-  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
-
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "admin_avatar.png"
+  validates_attachment_content_type :avatar, :content_type =>  /\Aimage\/.*\Z/
 
   def self.admins
     where(is_admin: true)
@@ -62,5 +56,5 @@ class User < ActiveRecord::Base
   def has_requests_pending_approval
     request_pending_approval.length > 0
   end
-  
+
 end

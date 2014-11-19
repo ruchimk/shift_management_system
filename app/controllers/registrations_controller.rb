@@ -34,13 +34,12 @@ class RegistrationsController < Devise::RegistrationsController
       if @validatable
         @minimum_password_length = resource_class.password_length.min
       end
-      respond_with resource
+     render 'welcome/signup_page'
     end
   end
 
   def create_employee
     build_resource(employee_sign_up_params)
-
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved

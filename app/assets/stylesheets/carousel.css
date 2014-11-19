@@ -24,6 +24,11 @@
 
 }
 #carousel_ul li img {
+   display: block;
+  max-height: 100%;
+  max-width: 200%;
+  overflow: hidden;
+  opacity: .4;
 }
 #left_scroll, #right_scroll{
     position:absolute;
