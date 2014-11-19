@@ -14,7 +14,7 @@
     width:80%;
 }
 .form01{
-    padding:100px 0 100px 100px;
+    padding:50px 0 50px 100px;
 }
 .tall{
     height:100%;
@@ -22,7 +22,7 @@
 .sub_btn{
     width:150px;
     height:30px;
-    margin-top:70px!important;
+    margin-top:20px!important;
     border:0;
     border-radius: 3px;
     padding:3px 0;
@@ -31,6 +31,19 @@
     background-color:#505050;
     transition:background 1s;
     color:#8D8D8D;
+}
+.cancel{
+    position:absolute;
+    right:100px;
+    bottom:20px;
+    font-size:12px;
+    padding-top:30px;
+    border-bottom:1px solid #888;
+    color:#888;
+}
+.cancel:hover{
+    color:red;
+    border-bottom:1px solid #404041;
 }
 .label{
     color:#ccc;
