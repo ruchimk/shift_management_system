@@ -1,6 +1,6 @@
 function approveRequest(id, element) {
   event.stopPropagation();
-  
+
   $.post("/approve_request",{id: id, admin_id:userID}, function (data) {console.log(data)})
 
   $(element).parent().fadeOut()
@@ -15,8 +15,8 @@ function denyRequest(id, element) {
 }
 
 function showShiftForm() {
-  $(".shiftTemplateForm").fadeIn("slow")
-  $("#newShift").hide()
+  $(".shiftTemplateForm").slideDown("slow")
+  $("#newShift").hide();
 }
 
 function cancelCreateShift() {
@@ -181,7 +181,7 @@ function ready() {
 
       }
   });
-  
+
   getEmployeeShifts(userID)
 
 }

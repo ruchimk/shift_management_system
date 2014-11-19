@@ -12,7 +12,8 @@
 }
 .activeEmployee {
     .employeeName {
-        background-color: #505050;
+        background-color: #6186cf;
+        color:white;
     }
 }
 .shiftTemplateForm {
@@ -20,8 +21,13 @@
     width: 100%;
 }
 .employee {
-    margin-top: 3px;
+    width:200px;
+    padding:1px 10px;
+    margin:0px 5px;
 }
+/*.employeeName:hover {
+    background:#555555;
+}*/
 .hasPendingRequest {
     cursor: pointer;
 }
@@ -48,12 +54,12 @@
 .employeeName {
     height:30px;
     border:0;
-    width:100%;
+    width:180px;
     font-family:helveticaNeue-light;
-    font-size:16pt;
-    color:#fff;
-    background-color:#8DC449;
-    text-align: center;
+    font-size:12pt;
+    color:#999;
+    background-color:#505050;
+    padding:5px 0 0 20px;
     vertical-align: middle;
 }
 .request_header {
@@ -62,12 +68,20 @@
     color: white;
     font-weight: normal;
 }
-#createShift {
+#createShift[onclick='createShift()'] {
     margin-top: 5px;
+    border:none;
+    background-color:#ffc500;
+}
+#createShift[onclick='cancelCreateShift()'] {
+    margin-top: 5px;
+    border:none;
+    background-color:#505050;
 }
 .btn.addShift {
     width: 100%;
-    border:3px solid #939598;
+    border:none;
+    background-color:#F92772;
     color:white;
 }
 .left_cont{
@@ -202,3 +216,25 @@ p.textarea{
     background-color:#ccc;
 
 }
+#shiftTempStartTime{
+    border:none;
+    background-color:#b2b5b9;
+    height:20px;
+    float:right;
+}
+#shiftTempEndTime{
+    border:none;
+    background-color:#b2b5b9;
+    height:20px;
+    float:right;
+}
+.start_label{
+    color:#ccc;
+    position:relative;
+}
+.end_label{
+    color:#ccc;
+    position:relative;
+    top:15px;
+}
+
