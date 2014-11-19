@@ -23,6 +23,7 @@
         <div class="logout" id="users_profile_image">
             <%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %>
         </div>
+        <div class="requests" id="users_profile_image"><a href="/requests">Requests</a></div>
         <% else %>
         <div class="signin" id="users_profile_image">Sign in</div>
         <div class="signin" id="users_profile_image"><a href="/signup">Sign Up</a></div>
