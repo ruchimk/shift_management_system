@@ -25,11 +25,12 @@ class User < ActiveRecord::Base
 
   def assigned_shifts_hash
     assigned_shift_array = []
-    assigned_shifts.each do |shift|
+    assigned_shifts.where(set:true).each do |shift|
       shift_hash = {
         time_string: shift.time_string,
         date: shift.date,
-        id: shift.id
+        id: shift.id,
+        shift_template_id: shift.shift_template_id
       }
       assigned_shift_array << shift_hash
     end
@@ -49,8 +50,25 @@ class User < ActiveRecord::Base
     made_requests_array = self.made_requests.where(pending: true, admin_id: nil)
     accepted_requests_array + made_requests_array
   end
+
+  def request_with_approval
+    accepted_requests_array = self.accepted_requests.where(pending: true, admin_id: !nil)
+    made_requests_array = self.made_requests.where(pending: true, admin_id: !nil)
+    accepted_requests_array + made_requests_array
+  end
+
   def has_requests_pending_approval
     request_pending_approval.length > 0
+  end
+
+  def shifts_for_pick_up
+    shifts = []
+    company.users.each do |user|
+      if user.id != self.id
+        shifts << user.request_with_approval
+      end
+    end
+    shifts.flatten
   end
   
 end
