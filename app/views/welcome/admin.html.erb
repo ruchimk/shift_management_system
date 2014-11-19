@@ -1,27 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-</head>
-
-<body>
-    <div class="header">
-        <% if current_user %>
-        <div class="div_logo">
-            <img src="assets/logo.png" alt="logo" class="logo">
-        </div>
-        <div class="signin" id="users_profile_image"><%= current_user.email %></div>
-        <div class="logout" id="users_profile_image">
-            <%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %>
-        </div>
-        <% end %>
-    </div>
-    <div class="container_dash tall">
-        <div class="left_cont">
-            <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">
-            <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
+<div class="container_dash tall">
+    <div class="left_cont">
+        <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">
+        <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
+        <% if current_user.is_admin %>
             <div class="employeesList">
                 <% current_user.company.users.each do |employee|%>
                     <% if employee.has_requests_pending_approval %>
@@ -36,7 +17,7 @@
                                     <div class="requestShift">
                                         <%= request.shift.time_string %> on <%= request.shift.date %>
                                     </div>
-                                    <div class="requestReason"> 
+                                    <div class="requestReason">
                                         Reason: <%= request.reason %>
                                     </div>
                                     <button onclick="approveRequest(<%= request.id %>, this)">Approve</button>
@@ -62,7 +43,7 @@
                     <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
                     <button type="submit" class="btn_shift_change">submit</button>
                 <% end %>
-                
+
             </div>
             <div class="date_box" id='external-events'>
                 <h4 class="textarea">Shifts</h4>
@@ -74,12 +55,12 @@
                 <button id="newShift" class='btn addShift' onclick="showShiftForm()">New Shift Type</button>
                 <div class="shiftTemplateForm" hidden>
                     <h4>Create Shift Type</h4>
-                    <label>Start Time</label>
+                    <label class="start_label">Start Time</label>
                     <select id="shiftTempStartTime">
                         <%= options_for_select(time_options, '450') %>
                     </select>
                     <br>
-                    <label>End Time</label>
+                    <label class="end_label">End Time</label>
                     <select id="shiftTempEndTime">
                         <%= options_for_select(time_options, '1050') %>
                     </select>
@@ -88,25 +69,76 @@
                     <button id="createShift" class='btn addShift' onclick="cancelCreateShift()">Cancel</button>
                 </div>
             </div>
-
+        <% end %>
+        <div id="requestBox" hidden>
+            <h5 class="request_header"></h5>
+            <%= form_for :request, url: change_shift_path do |f| %>
+                <%= f.hidden_field(:requester_id, value: current_user.id) %>
+                <%= f.hidden_field(:availability, value: false) %>
+                <%= f.hidden_field(:shift_id, value: 1) %>
+                <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
+                <button type="submit" class="btn_shift_change">submit</button>
+            <% end %>
         </div>
-        <div class="right_cont">
-            <div class="notify" id="note">
-                Recent Notification
+        <div id="availabilityBox" hidden>
+            <h5 class="availability_header"></h5>
+            <%= form_for :request, url: make_shift_available_path do |f| %>
+                <select id="shiftTempOptions" name='shift_template_id'>
+                    <%= options_for_select(current_user.company.shift_templates.collect{|shift| [ shift.time_string,shift.id]}) %>
+                </select>
+                <%= f.hidden_field(:accepter_id, value: current_user.id) %>
+                <%= hidden_field_tag(:date, nil, class: "availabilityDate") %>
+                <%= f.hidden_field(:availability, value: true) %>
+                <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
+                <button type="submit" class="btn_shift_change">submit</button>
+            <% end %>
+        </div>
+        <% if current_user.has_pending_requests %>
+            <div class="pendingRequests">
+                <h4>Pending Requests</h4>
+                <% current_user.pending_requests.each do |request|%>
+                    <div class="pendingRequests">
+                        <hr class="requestSplit">
+                        <div class="pendingRequestType"><%= request.type_string %> </div>
+                        <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
+                        <div class="pendingRequestTime"><%= request.shift.time_string %></div>
+                        <div class="pendingRequestReason"><%= request.reason %></div>
+                    </div>
+                <% end %>
             </div>
-            <input type="hidden" value=<%= current_user.id %> id="employeeID">
-            <div id='calendar'></div>
-
-            <div style='clear:both'></div>
-            </div>
-            <div class="line"></div>
+        <% end %>
+        <div class="shiftsForPickUp">
+            <h4>Shifts for Pick Up</h4>
+            <% current_user.shifts_for_pick_up.each do |request| %>
+                <div class="pickUpShift">
+                    <hr class="requestSplit">
+                    <div class="pendingRequestType"><%= request.type_string %> </div>
+                    <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
+                    <div class="pendingRequestTime"><%= request.shift.time_string %></div>
+                    <div class="pendingRequestReason"><%= request.reason %></div>
+                </div>
+                <%= form_for request, url: pick_up_shift_path(request.id) do |f| %>
+                    <%= f.hidden_field(:accepter_id, value: current_user.id) %>
+                    <%= f.submit value:"Pick Up Shift" %>
+                <% end %>
+            <% end %>
         </div>
     </div>
-    <script type="text/javascript">
-        var userID = <%= current_user.id  %>,
-            companyID = <%= current_user.company.id  %>;
-    </script>
-    <!-- javascript -->
-</body>
+    <div class="right_cont">
+        <div class="notify" id="note">
+            Recent Notification
+        </div>
+        <input type="hidden" value=<%= current_user.id %> id="employeeID">
+        <div id='calendar'></div>
 
-</html>
+        <div style='clear:both'></div>
+        <div class="line"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var userID = <%= current_user.id %>,
+        companyID = <%= current_user.company.id %>,
+        timeOptions = <%= raw current_user.company.shift_templates.collect{|shift| [shift.id, shift.time_string] } %> ;
+
+</script>

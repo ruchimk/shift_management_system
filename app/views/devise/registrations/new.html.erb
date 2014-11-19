@@ -1,46 +1,47 @@
-<h2>Sign up</h2>
+<!DOCTYPE html>
+<html lang="en">
 
-<%= form_for(resource, as: resource_name, url: create_user_path) do |f| %>
-  <%= devise_error_messages! %>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/signup_form.css">
+</head>
 
-  <div class="field">
-    <%= label_tag :company_name, "Company Name" %><br />
-    <%= text_field_tag :company_name %>
-  </div>
+<body>
+    <!-- main section for the form -->
+    <div class="container tall">
+        <div class="signup_container">
+        <%= form_for(resource, as: :user, url: create_user_path, html: {class: "form01"}) do |f| %>
+        <%= devise_error_messages! %>
+        <h2 class="label">Sign Up your Company</h2>
+            <span class="label">Company Name:</span>
+            <%= text_field_tag :company_name, nil, class: "g_inpt" %>
+            <span class="label">Email</span>
+            <%= f.email_field :email, class: "g_inpt"  %>
+            <span class="label">First Name:</span>
+            <%= f.text_field :first_name, class: "g_inpt" %>
+            <span class="label">Last Name:</span>
+            <%= f.text_field :last_name, class: "g_inpt"  %>
+            <span class="label">Password:</span>
+            <%= f.password_field :password, class: "g_inpt" %>
+            <span class="label">Password Confirmation:</span>
+            <div class="clear"></div>
+            <%= f.password_field :password_confirmation, class: "g_inpt" %>
+            <%= f.hidden_field(:is_admin, value: true) %>
+            <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>
+            <a href="/" value="cancel">Cancel</a>
+            <!-- <input type="button" class="sub_btn" value="submit"> -->
+        <% end %>
+        </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+    <!-- javascript -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/carousel.js"></script>
+    <script src="js/main.js"></script>
+</body>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-
-  <%= f.hidden_field(:is_admin, value: true) %>
-
-<% end %>
-
+</html>

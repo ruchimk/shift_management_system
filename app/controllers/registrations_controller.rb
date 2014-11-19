@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     if @validatable
       @minimum_password_length = resource_class.password_length.min
     end
-    render "devise/registrations/new_employee"
+    render "welcome/add_employee"
   end
 
   def new

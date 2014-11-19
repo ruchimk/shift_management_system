@@ -1,6 +1,6 @@
 function approveRequest(id, element) {
   event.stopPropagation();
-  
+
   $.post("/approve_request",{id: id, admin_id:userID}, function (data) {console.log(data)})
 
   $(element).parent().fadeOut()
@@ -15,8 +15,8 @@ function denyRequest(id, element) {
 }
 
 function showShiftForm() {
-  $(".shiftTemplateForm").fadeIn("slow")
-  $("#newShift").hide()
+  $(".shiftTemplateForm").slideDown("slow")
+  $("#newShift").hide();
 }
 
 function cancelCreateShift() {
@@ -39,7 +39,7 @@ function getEmployeeShifts(employeeID) {
   $.getJSON("/assigned_shifts/"+employeeID+".json", function (data) {
     for (var i = 0, shiftLength = data.length, shift, shift_p, requestHeader; i < shiftLength; i++) {
       shift = data[i]
-      shift_div = $("<div class='external-event eventOnCalendar' data-id='"+shift.id+"'>" + shift.time_string + "</div>")
+      shift_div = $("<div class='external-event eventOnCalendar' data-id="+shift.id+" data-template-id="+shift.shift_template_id+">" + shift.time_string + "</div>")
       $(".fc-day[data-date='"+shift.date+"']").append(shift_div)
       shift_div.click(function() {
         this_div = $(this)
@@ -50,7 +50,7 @@ function getEmployeeShifts(employeeID) {
       })
     }
   })
-}
+}                         
 
 function ready() {
   $('.hasPendingRequest').click(function () {
@@ -81,13 +81,28 @@ function ready() {
     getEmployeeShifts(employeeID)
   })
 
-  $('#calendar').fullCalendar({
+  
 
-        })
+  $('#calendar').fullCalendar()
 
+  $(".fc-day").click(function () {
+    if (($(".eventOnCalendar", this).length == 0)) {
+      var this_element = $(this),
+          date = new Date(this_element.data('date'))
+          date.setHours( date.getHours() + 6 )
+      $("#availabilityBox").fadeIn()
+      $(".availabilityDate").val(this_element.data('date'))
+      availability_header = "Create availability on " + date.toLocaleDateString("en-US")
+      $('.availability_header').text(availability_header)
+      $("#availability_shift_id").val($(this).data("id"))
+    }
+  })
   /* initialize the external events
   -----------------------------------------------------------------*/
-
+  $('.shiftTemplatesList .external-event').mousedown(function () {
+    // $(this).css("zoom",1)
+    // $(this).removeClass("external-event")
+  })
   $('#external-events div.external-event').each(function() {
 
       // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
@@ -109,6 +124,8 @@ function ready() {
   });
 
   $( ".fc-day" ).droppable({
+    hoverClass: "hoverStuff",
+    refreshPositions: true, //added line
      drop: function( event, ui ) {
         var copy = $(ui.draggable.context).clone().text(),
             copyID = $(ui.draggable.context).data("shift-template-id")
@@ -128,7 +145,6 @@ function ready() {
              })
         }
         $.post("/assign_shift", {shift: {employee_id:employeeID, date:date.data('date'), shift_template_id:copyID}}, function(data){
-          console.log(data)
         })
       }
 
@@ -170,7 +186,7 @@ function ready() {
 
       }
   });
-  
+
   getEmployeeShifts(userID)
 
 }

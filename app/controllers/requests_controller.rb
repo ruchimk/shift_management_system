@@ -3,10 +3,12 @@ class RequestsController < ApplicationController
 
 	def index
 		@requests = Request.all
+		render "welcome/requests"
 	end
 
 	def new
 		@request = Request.new
+		render "welcome/requests"
 	end
 
 	def edit
@@ -37,6 +39,7 @@ class RequestsController < ApplicationController
 
 	def show
 		@request = Request.find(params[:id])
+		render "welcome/requests"
 	end
 
 	def update
@@ -64,9 +67,10 @@ class RequestsController < ApplicationController
 	end
 
 	def pick_up_shift
-		@request = Request.find(params[:id])
-		@request.update(pick_up_shift_params)
-
+		request = Request.find(params[:id])
+		request.update(pick_up_shift_params)
+		shift = Shift.find(request.shift_id)
+		shift.update(employee_id: request.accepter_id, set:true)
 		redirect_to root_path
 	end
 
@@ -86,7 +90,8 @@ class RequestsController < ApplicationController
 
 	private
 	def pick_up_shift_params
-		params.require(:request).permit(:accepter_id)
+		params[:request][:pending] = false
+		params.require(:request).permit(:accepter_id, :pending)
 	end
 
 	def give_shift_params
@@ -102,8 +107,10 @@ class RequestsController < ApplicationController
 	end
 
 	def make_shift_available_params
-		shift = Shift.create(date: params[:date], time: params[:time])
+		date = params[:date]
+		shiftT_id = params[:shift_template_id]
+		shift = Shift.create(date: date, shift_template_id: shiftT_id, set: false, employee_id: current_user.id )
 		params[:request][:shift_id] = shift.id
-		params.require(:request).permit(:shift_id, :accepter_id, :availability)
+		params.require(:request).permit(:shift_id, :availability, :reason, :accepter_id)
 	end
 end
