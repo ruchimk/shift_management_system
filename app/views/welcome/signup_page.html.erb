@@ -37,8 +37,8 @@
             <div class="clear"></div>
             <%= f.password_field :password_confirmation, class: "g_inpt" %>
             <%= f.hidden_field(:is_admin, value: true) %>
-            <%= f.submit "Sign up" %>
-            <!-- <input type="button" class="sub_btn" value="submit"> -->
+            <%= f.submit "Sign up", class: "sub_btn" %>
+            <%= link_to "Cancel", root_path, class: "cancel" %>
         <% end %>
         </div>
     </div>

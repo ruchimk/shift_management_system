@@ -19,10 +19,11 @@ body{
 }
 #users_profile_image{
     float:right;
-    margin:4px 30px 0 0;
+    margin:7px 30px 0 0;
     padding:10px;
+    font-size:12px;
 }
-#users_profile_image:hover{
+.signin:hover, .signin a:hover{
     color:#8D8D8D;
 }
 #users_profile_image:before{
@@ -32,12 +33,16 @@ body{
     background-image: url('../assets/male.png');
     background-size: 30px;
     position: absolute;
-    margin:-5px -40px;
+    margin:-7px -40px;
     z-index: 2;
     transition:background-position .4s;
 }
 #users_profile_image:hover:before{
     background-position:0 30px;
+}
+a{
+    text-decoration: none;
+    color:#ccc;
 }
 .signin_popup{
     width:200px;
