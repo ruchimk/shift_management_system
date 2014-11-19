@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
   belongs_to :company
+  has_many :requests
   has_many :made_requests, class_name: "Request", foreign_key: "requester_id"
   has_many :accepted_requests, class_name: "Request", foreign_key: "accepter_id"
   has_many :approved_requests, class_name: "Request", foreign_key: "admin_id"
@@ -34,5 +35,14 @@ class User < ActiveRecord::Base
       assigned_shift_array << shift_hash
     end
     assigned_shift_array
+  end
+
+  def pending_requests
+    accepted_requests_array = self.accepted_requests.where(pending: true)
+    made_requests_array = self.made_requests.where(pending: true)
+    accepted_requests_array + made_requests_array
+  end
+
+  def has_pending_requests
   end
 end

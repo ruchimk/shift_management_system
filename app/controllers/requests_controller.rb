@@ -82,7 +82,7 @@ class RequestsController < ApplicationController
 	end
 
 	def change_shift_params
-		params.require(:request).permit(:shift_id, :requester_id, :availability)
+		params.require(:request).permit(:shift_id, :requester_id, :reason, :availability)
 	end
 
 	def make_shift_available_params

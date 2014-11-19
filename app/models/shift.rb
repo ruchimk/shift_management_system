@@ -5,7 +5,7 @@ class Shift < ActiveRecord::Base
     has_many :requests
 
     def time_string
-      "#{self.shift_template.format_start_time} - #{self.shift_template.format_end_time}"
+      shift_template.time_string
     end
 
 end

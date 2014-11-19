@@ -17,26 +17,35 @@
         <div class="left_cont">
             <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">
             <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
-            <input type="button" class="request_btn" value='REQUEST SHIFT CHANGE'>
-            <input type="button" class="available_btn" value='CHANGE SHIFT AVAILABLE'>
-            <div class="text_area_box" contenteditable="true">
-                <h2 class="textarea">Request...</h2>
-                <p class="textarea">Please type your reason in here!</p>
-
+            <div class="employeesList">
+                <% current_user.company.users.each do |employee|%>
+                    <div class='employee'><%= employee.first_name %></div>
+                <% end %>
             </div>
-            <input type="submit" class="btn_shift_change">
-
+            <div id="requestBox" hidden>
+                <p class="request_header"></p>
+                <%= form_for :request, url: change_shift_path do |f| %>
+                    <%= f.hidden_field(:requester_id, value: current_user.id) %>
+                    <%= f.hidden_field(:availability, value: false) %>
+                    <%= f.hidden_field(:shift_id, value: 1) %>
+                    <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
+                    <button type="submit" class="btn_shift_change">submit</button>
+                <% end %>
+                
+            </div>
+            <div class="pendingRequests">
+                <% current_user.pending_requests.each do |request|  %>
+                <p> <%= request.reason %></p>
+                <% end %>
+            </div>
             <div class="date_box" id='external-events'>
                 <h4 class="textarea">Shifts</h4>
-                <div class='external-event' data-shift-time="9am - 3pm">9am - 3pm</div>
-                <div class='external-event' data-shift-time="3pm - 8pm">3pm - 8pm</div>
-                <div class='external-event' data-shift-time="8pm - 12am">8pm - 12am</div>
-            </div>
-            <ul>
-                <% current_user.assigned_shifts.each do |shift| %>
-                <li><%=shift.shift_template.start_time %> on <%= shift.date  %> </li>
+                <% current_user.company.shift_templates.each do |shift_template| %>
+                <div class='external-event' data-shift-template-id="<%=shift_template.id  %>"><%=shift_template.time_string  %></div>
+
                 <% end %>
-            </ul>
+            </div>
+
         </div>
         <div class="right_cont">
             <div class="notify" id="note">
