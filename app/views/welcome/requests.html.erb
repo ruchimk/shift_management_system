@@ -22,70 +22,36 @@
         <div class="left_cont">
             <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">
             <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
-            <div class="employeesList">
-                <% current_user.company.users.each do |employee|%>
-                    <% if employee.has_requests_pending_approval %>
-                        <div class="employee hasPendingRequest">
-                            <input type="hidden" value=<%= employee.id %> class="employeeID">
-                            <div class='employeeName'><%= employee.first_name %> </div>
-                        </div>
-                    <% else %>
-                        <div class="employee">
-                            <div class='employeeName'><%= employee.first_name %></div>
-                            <input type="hidden" value=<%= employee.id %> class="employeeID">
-                        </div>
-                    <% end %>
-                <% end %>
-            </div>
-            <div id="requestBox" hidden>
-                <h5 class="request_header"></h5>
-                <%= form_for :request, url: change_shift_path do |f| %>
-                    <%= f.hidden_field(:requester_id, value: current_user.id) %>
-                    <%= f.hidden_field(:availability, value: false) %>
-                    <%= f.hidden_field(:shift_id, value: 1) %>
-                    <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
-                    <button type="submit" class="btn_shift_change">submit</button>
-                <% end %>
-                
-            </div>
-            <div class="date_box" id='external-events'>
-                <h4 class="textarea">Shifts</h4>
-                <div class="shiftTemplatesList">
-                <% current_user.company.shift_templates.each do |shift_template| %>
-                    <div class='external-event' data-shift-template-id="<%=shift_template.id  %>"><%=shift_template.time_string  %></div>
-                <% end %>
-                </div>
-                <button id="newShift" class='btn addShift' onclick="showShiftForm()">New Shift Type</button>
-                <div class="shiftTemplateForm" hidden>
-                    <h4>Create Shift Type</h4>
-                    <label>Start Time</label>
-                    <select id="shiftTempStartTime">
-                        <%= options_for_select(time_options, '450') %>
-                    </select>
-                    <br>
-                    <label>End Time</label>
-                    <select id="shiftTempEndTime">
-                        <%= options_for_select(time_options, '1050') %>
-                    </select>
-                    <br>
-                    <button id="createShift" class='btn addShift' onclick="createShift()">Add</button>
-                    <button id="createShift" class='btn addShift' onclick="cancelCreateShift()">Cancel</button>
-                </div>
-            </div>
-
         </div>
+
         <div class="right_cont">
             <div class="requestsList">
             <h2>Requests for <%=current_user.company.name %></h2>
-            <% current_user.company.each do |request|%>
-                <% if request.has_requests_pending_approval %>
-                <% end %>
-            <% end %>
+            <table>
+                <tr>
+                    <th>Shift</th>
+                    <th colspan="3"></th>
+                </tr>
+              
+                <% if @requests.empty? %>
+                    <td class="noposts">No Requests available</td>
+                <% else %>
 
+                <% @requests.each do |request| %>
+                    <tr>
+                        <td><%= request.shift_id %></td>
+                        <td><%= link_to 'Show', request_path(request) %></td>
+                        <% if current_user.try(:is_admin) %>
+                        <td><%= link_to 'Destroy', request_path(request),
+                            method: :delete, data: { confirm: 'Are you sure you wish to delete this?' } %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+              <% end %>
+            </table>
             </div>
         </div>
             <div class="line"></div>
-        </div>
     </div>
     <script type="text/javascript">
         var userID = <%= current_user.id  %>,
