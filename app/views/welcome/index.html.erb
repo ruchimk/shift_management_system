@@ -7,23 +7,6 @@
 </head>
 
 <body>
-    <div class="header">
-        <div class="div_logo">
-            <img src="assets/logo.png" alt="logo" class="logo">
-        </div>
-        <div class="signin" id="users_profile_image">Sign in</div>
-        <div class="signin" id="users_profile_image"><a href="/signup">Sign Up</a></div>
-        <div class="signin_popup">
-            <%= form_for(:user, as: :user, url: session_path(:user), html: {class: "popup_login_form"}) do |f| %>
-                <span class="input_label">Email</span>
-                <%= f.email_field :email, class: "g_inpt" %>
-                <span class="input_label">Password</span>
-                <%= f.password_field :password, class: "g_inpt" %>
-                <button type="sumbit" class="btn" value="Login">Log in</button>
-                <input type="reset" class="btn abort" value="Cancel" />
-            <% end %>   
-        </div>
-    </div>
     <!-- the content here copied to temp01.html in temp folder -->
     <div class="carousel_text_cont" onclick='runIt()'>
         <div class="slogan_blocks">

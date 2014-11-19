@@ -7,17 +7,6 @@
 </head>
 
 <body>
-    <div class="header">
-        <% if current_user %>
-        <div class="div_logo">
-            <img src="assets/logo.png" alt="logo" class="logo">
-        </div>
-        <div class="signin" id="users_profile_image"><%= current_user.email %></div>
-        <div class="logout" id="users_profile_image">
-            <%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %>
-        </div>
-        <% end %>
-    </div>
     <div class="container_dash tall">
         <div class="left_cont">
             <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">

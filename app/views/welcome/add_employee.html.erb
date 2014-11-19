@@ -14,9 +14,8 @@
     <!-- main section for the form -->
     <div class="container tall">
         <div class="signup_container">
-        <%= form_for(resource, as: :user, url: create_user_path, html: {class: "form01"}) do |f| %>
-            <span class="label">Company Name:</span>
-            <%= text_field_tag :company_name, nil, class: "g_inpt" %>
+        <%= form_for(resource, as: resource_name, url: create_employee_path, html: {class: "form01"}) do |f| %>
+        <%= devise_error_messages! %>
             <span class="label">Email</span>
             <%= f.email_field :email, class: "g_inpt"  %>
             <span class="label">First Name:</span>
@@ -28,7 +27,9 @@
             <span class="label">Password Confirmation:</span>
             <div class="clear"></div>
             <%= f.password_field :password_confirmation, class: "g_inpt" %>
-            <%= f.hidden_field(:is_admin, value: true) %>
+            <span class="label">Make this Employee an Admin</span>
+            <%= f.check_box :is_admin, class: "g_inpt"  %>
+            <%= f.hidden_field(:company_id, value: current_user.company_id) %>
             <button type="sumbit" class="input_btn" value="signup">Sign up</button>
             <!-- <input type="button" class="sub_btn" value="submit"> -->
         <% end %>
