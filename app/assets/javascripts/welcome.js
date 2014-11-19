@@ -99,7 +99,10 @@ function ready() {
   })
   /* initialize the external events
   -----------------------------------------------------------------*/
-
+  $('.shiftTemplatesList .external-event').mousedown(function () {
+    // $(this).css("zoom",1)
+    // $(this).removeClass("external-event")
+  })
   $('#external-events div.external-event').each(function() {
 
       // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
@@ -121,6 +124,8 @@ function ready() {
   });
 
   $( ".fc-day" ).droppable({
+    hoverClass: "hoverStuff",
+    refreshPositions: true, //added line
      drop: function( event, ui ) {
         var copy = $(ui.draggable.context).clone().text(),
             copyID = $(ui.draggable.context).data("shift-template-id")
