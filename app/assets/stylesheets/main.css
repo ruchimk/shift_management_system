@@ -156,5 +156,20 @@ body{
 .signin_popup:hover .btn{
     background-color: #235280;
 }
-
+a:link {
+color: #ccc;
+}
+a:visited {
+color: #ccc;
+}
+a:hover {
+color:#8D8D8D;
+}
+a:active {
+color: #ccc;
+}
+.logout a:link { color: #ccc; }
+.logout a:visited { color: #ccc; }
+.logout a:hover { color: #8D8D8D; }
+.logout a:active { color: #ccc; }
 /*===============================================================*/
