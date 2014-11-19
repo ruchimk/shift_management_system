@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 gem 'rails_12factor', group: :production
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,10 +38,16 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+
 gem "rspec-rails", :group => [:test, :development]
 group :test do
   gem "factory_girl_rails"
   gem "capybara"
   gem "guard-rspec"
   gem "pry-rails"
+  gem 'faker', '~> 1.4.3'
+  gem 'rspec-activemodel-mocks'
 end
+
+gem 'paperclip'
+gem 'aws-sdk'

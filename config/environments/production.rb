@@ -76,15 +76,8 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # ActionMailer::Base.smtp_settings = {
-  #   :user_name => 'your_sendgrid_username',
-  #   :password => 'your_sendgrid_password',
-  #   :domain => 'yourdomain.com',
-  #   :address => 'smtp.sendgrid.net',
-  #   :port => 587,
-  #   :authentication => :plain,
-  #   :enable_starttls_auto => true
-  # }
+  config.serve_static_assets = true
+
   config.action_mailer.smtp_settings = {
     :address              => 'smtp.gmail.com',
     :port                 => 587,
@@ -94,4 +87,14 @@ Rails.application.configure do
     :authentication       => "login",
     :enable_starttls_auto => true
   }
+
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_credentials => {
+    :bucket => ENV['shiftable'],
+    :access_key_id => ENV['AKIAI27H6KM4IGJ7AWKQ'],
+    :secret_access_key => ENV['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']
+  }
+}
+
 end
