@@ -6,6 +6,15 @@
     background-color: #fff;
     color:#505050;
 }
+
+.fc-day-number:hover {
+    background-color: red;
+}
+.activeEmployee {
+    .employeeName {
+        background-color: #505050;
+    }
+}
 .shiftTemplateForm {
     height: 100%;
     width: 100%;
