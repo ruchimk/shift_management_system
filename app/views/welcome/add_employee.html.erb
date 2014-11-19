@@ -30,7 +30,8 @@
             <span class="label">Make this Employee an Admin</span>
             <%= f.check_box :is_admin, class: "g_inpt"  %>
             <%= f.hidden_field(:company_id, value: current_user.company_id) %>
-            <button type="sumbit" class="input_btn" value="signup">Sign up</button>
+            <button type="sumbit" class="input_btn" value="signup">Sign up</button><br><br>
+            <a href="/" value="cancel">Cancel</a>
             <!-- <input type="button" class="sub_btn" value="submit"> -->
         <% end %>
         </div>
