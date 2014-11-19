@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <% if @request.availability %>
 <h1>New Shift Availability Pending:</h1>
 <% else %>
@@ -17,11 +16,12 @@
 	<strong>Approved by Admin:</strong>
 	<%=@request.admin ?  @request.admin.first_name : "Not yet Approved" %><br>
 	<strong>Date and time:</strong>
-	Request for <%= @request.shift.date %> at <%= @request.shift.time %><br>
+	Request for <%= @request.shift.date %><br>
 </p>	
 
 <% if @request.availability && @request.accepter != current_user %>
 		<%= form_for @request, url: give_shift_path(@request) do |f| %>
+		
 		  <div class="field">
 		  	<%= f.hidden_field(:requester_id, value: current_user.id) %>
 		    <%= f.submit "Give Shift"%>
@@ -44,6 +44,4 @@
 			</div>
 	<% end %>
 <% end %>
-=======
-<h1>New Request Pending:</h1>
->>>>>>> b9101f38c0e79bcdb5775d607778ad4990a50367
+

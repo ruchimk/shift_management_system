@@ -2,6 +2,10 @@ class ShiftTemplate < ActiveRecord::Base
   belongs_to :company
   has_many :shifts
 
+  def time_string
+    "#{self.format_start_time} - #{self.format_end_time}"
+  end
+
   def format_start_time
     time = self.start_time
     format_time(time)

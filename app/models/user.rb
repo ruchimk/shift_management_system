@@ -35,4 +35,22 @@ class User < ActiveRecord::Base
     end
     assigned_shift_array
   end
+
+  def pending_requests
+    accepted_requests_array = self.accepted_requests.where(pending: true)
+    made_requests_array = self.made_requests.where(pending: true)
+    accepted_requests_array + made_requests_array
+  end
+  def has_pending_requests
+    pending_requests.length > 0
+  end
+  def request_pending_approval
+    accepted_requests_array = self.accepted_requests.where(pending: true, admin_id: nil)
+    made_requests_array = self.made_requests.where(pending: true, admin_id: nil)
+    accepted_requests_array + made_requests_array
+  end
+  def has_requests_pending_approval
+    request_pending_approval.length > 0
+  end
+  
 end

@@ -12,6 +12,22 @@ class RequestsController < ApplicationController
 	def edit
 	end
 
+	def approve
+		request = Request.find(params[:id])
+		request.update({admin_id: params[:admin_id]})
+		respond_to do |format|
+		  format.json { render json: {request:request }}
+		end
+	end
+
+	def deny
+		request = Request.find(params[:id])
+		request.update({pending: false, admin_id: params[:admin_id]})
+		respond_to do |format|
+		  format.json { render json: {request:request }}
+		end
+	end
+
 	def create
 		@request = Request.new(request_params)
 
@@ -82,7 +98,7 @@ class RequestsController < ApplicationController
 	end
 
 	def change_shift_params
-		params.require(:request).permit(:shift_id, :requester_id, :availability)
+		params.require(:request).permit(:shift_id, :requester_id, :reason, :availability)
 	end
 
 	def make_shift_available_params

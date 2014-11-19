@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  post "/approve_request", to: "requests#approve"
+  post "/deny_request", to: "requests#deny"
+  post "/assign_shift", to: "shifts#assign_shift"
+  post "/create_shift_template", to: 'shift_template#create'
   get "/assigned_shifts/:id", to: "users#assigned_shifts", as: :assigned_shifts
   post "/change_shift", to: 'requests#change_shift', as: 'change_shift'
   post "/make_shift_available", to: 'requests#make_shift_available', as: 'make_shift_available'
