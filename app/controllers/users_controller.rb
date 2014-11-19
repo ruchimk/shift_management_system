@@ -20,5 +20,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def assign_shift
+    
+  end
+
 
 end
