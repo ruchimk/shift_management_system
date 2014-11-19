@@ -26,6 +26,7 @@
                 <% current_user.company.users.each do |employee|%>
                     <% if employee.has_requests_pending_approval %>
                         <div class="employee hasPendingRequest">
+                            <input type="hidden" value=<%= employee.id %> class="employeeID">
                             <div class='employeeName'><%= employee.first_name %> </div>
                             <div class='employeeRequestNotifier'>Request Pening Approval</div>
                             <div class='employeeRequests' hidden>
@@ -47,6 +48,7 @@
                     <% else %>
                         <div class="employee">
                             <div class='employeeName'><%= employee.first_name %></div>
+                            <input type="hidden" value=<%= employee.id %> class="employeeID">
                         </div>
                     <% end %>
                 <% end %>
@@ -92,7 +94,7 @@
             <div class="notify" id="note">
                 Recent Notification
             </div>
-
+            <input type="hidden" value=<%= current_user.id %> id="employeeID">
             <div id='calendar'></div>
 
             <div style='clear:both'></div>

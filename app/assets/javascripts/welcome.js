@@ -35,11 +35,29 @@ function createShift() {
   $("#newShift").fadeIn("slow")
 }
 
+function getEmployeeShifts(employeeID) {
+  $.getJSON("/assigned_shifts/"+employeeID+".json", function (data) {
+    for (var i = 0, shiftLength = data.length, shift, shift_p, requestHeader; i < shiftLength; i++) {
+      shift = data[i]
+      shift_div = $("<div class='external-event eventOnCalendar' data-id='"+shift.id+"'>" + shift.time_string + "</div>")
+      $(".fc-day[data-date='"+shift.date+"']").append(shift_div)
+      shift_div.click(function() {
+        this_div = $(this)
+        $('#requestBox').fadeIn("slow")
+        requestHeader = "Shift Change for " + this_div.text() + " on " + this_div.parent().data('date')
+        $('.request_header').text(requestHeader)
+        $("#request_shift_id").val($(this).data("id"))
+      })
+    }
+  })
+}
+
 function ready() {
   $('.hasPendingRequest').click(function () {
     var notifier = $('.employeeRequestNotifier', this),
         requests = $('.employeeRequests', this);
-    $('.employeeRequests', this).fadeIn()
+    $('.employeeRequests').not(requests).hide()
+    $('.employeeRequestNotifier').not(notifier).fadeIn()
     if (notifier.is(":visible")) {
       notifier.hide()
       requests.fadeIn()
@@ -48,6 +66,21 @@ function ready() {
       requests.hide()
     }
   })
+
+  $('.employee').click(function () {
+    var this_div = $( this )
+    $(".employee").not(this).removeClass("activeEmployee")
+    if (!this_div.hasClass( "hasPendingRequest" )){
+      $('.employeeRequests').hide()
+      $('.employeeRequestNotifier').fadeIn()
+    }
+    this_div.addClass("activeEmployee")
+    $(".eventOnCalendar").remove()
+    employeeID = $(".employeeID", this).val()
+    $("#employeeID").val(employeeID)
+    getEmployeeShifts(employeeID)
+  })
+
   $('#calendar').fullCalendar({
 
         })
@@ -80,7 +113,8 @@ function ready() {
         var copy = $(ui.draggable.context).clone().text(),
             copyID = $(ui.draggable.context).data("shift-template-id")
             shift = $("<p class='external-event eventOnCalendar' data-template-id='"+copyID+"'>"+copy+"</p>"),
-            date = $( this );
+            date = $( this ),
+            employeeID = $("#employeeID").val();
         if($(".external-event[data-template-id='"+copyID+"']", this).length == 0){
           date
              .addClass( "ui-state-highlight" )
@@ -93,7 +127,7 @@ function ready() {
                $("#request_shift_id").val($(this).data("id"))
              })
         }
-        $.post("/assign_shift", {shift: {employee_id:userID, date:date.data('date'), shift_template_id:copyID}}, function(data){
+        $.post("/assign_shift", {shift: {employee_id:employeeID, date:date.data('date'), shift_template_id:copyID}}, function(data){
           console.log(data)
         })
       }
@@ -137,20 +171,8 @@ function ready() {
       }
   });
   
-  $.getJSON("/assigned_shifts/"+userID+".json", function (data) {
-    for (var i = 0, shiftLength = data.length, shift, shift_p, requestHeader; i < shiftLength; i++) {
-      shift = data[i]
-      shift_div = $("<div class='external-event eventOnCalendar' data-id='"+shift.id+"'>" + shift.time_string + "</div>")
-      $(".fc-day[data-date='"+shift.date+"']").append(shift_div)
-      shift_div.click(function() {
-        this_div = $(this)
-        $('#requestBox').fadeIn("slow")
-        requestHeader = "Shift Change for " + this_div.text() + " on " + this_div.parent().data('date')
-        $('.request_header').text(requestHeader)
-        $("#request_shift_id").val($(this).data("id"))
-      })
-    }
-  })
+  getEmployeeShifts(userID)
+
 }
 
 function populateRequestChange (data) {
