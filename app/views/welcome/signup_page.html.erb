@@ -34,8 +34,6 @@
             <span class="label">Profile Picture:</span>
             <%= f.label :avatar , class: "g_inpt" %><br />
              <%= f.file_field :avatar %>
-        </div>
-
             <span class="label">Password:</span>
             <%= f.password_field :password, class: "g_inpt" %>
             <span class="label">Password Confirmation:</span>
@@ -44,9 +42,8 @@
             <%= f.hidden_field(:is_admin, value: true) %>
             <%= f.submit "Sign up", class: "sub_btn" %>
             <%= f.submit "Cancel", class: "sub_btn" %>
-            <!-- <input type="button" class="sub_btn" value="submit"> -->
         <% end %>
-        </div>
+       </div>
     </div>
 
     <!-- javascript -->
