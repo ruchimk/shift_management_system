@@ -11,4 +11,8 @@ class WelcomeController < ApplicationController
     render 'admin'
   end
 
+    def requests
+    render 'admin'
+  end
+
 end

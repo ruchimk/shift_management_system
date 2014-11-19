@@ -3,10 +3,12 @@ class RequestsController < ApplicationController
 
 	def index
 		@requests = Request.all
+		render "welcome/requests"
 	end
 
 	def new
 		@request = Request.new
+		render "welcome/requests"
 	end
 
 	def edit
@@ -37,6 +39,7 @@ class RequestsController < ApplicationController
 
 	def show
 		@request = Request.find(params[:id])
+		render "welcome/requests"
 	end
 
 	def update
