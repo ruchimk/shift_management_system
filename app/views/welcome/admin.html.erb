@@ -19,11 +19,35 @@
             <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
             <div class="employeesList">
                 <% current_user.company.users.each do |employee|%>
-                    <div class='employee'><%= employee.first_name %></div>
+                    <% if employee.has_requests_pending_approval %>
+                        <div class="employee hasPendingRequest">
+                            <div class='employeeName'><%= employee.first_name %> </div>
+                            <div class='employeeRequestNotifier'>Request Pening Approval</div>
+                            <div class='employeeRequests' hidden>
+                                <% employee.request_pending_approval.each do |request|  %>
+                                <div class="employeeRequest">
+                                <hr class="requestSplit">
+                                    <div class="requestShift">
+                                        <%= request.shift.time_string %> on <%= request.shift.date %>
+                                    </div>
+                                    <div class="requestReason"> 
+                                        Reason: <%= request.reason %>
+                                    </div>
+                                    <button onclick="approveRequest(<%= request.id %>, this)">Approve</button>
+                                    <button onclick="denyRequest(<%= request.id %>, this)">Deny</button>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    <% else %>
+                        <div class="employee">
+                            <div class='employeeName'><%= employee.first_name %></div>
+                        </div>
+                    <% end %>
                 <% end %>
             </div>
             <div id="requestBox" hidden>
-                <p class="request_header"></p>
+                <h5 class="request_header"></h5>
                 <%= form_for :request, url: change_shift_path do |f| %>
                     <%= f.hidden_field(:requester_id, value: current_user.id) %>
                     <%= f.hidden_field(:availability, value: false) %>
@@ -33,17 +57,29 @@
                 <% end %>
                 
             </div>
-            <div class="pendingRequests">
-                <% current_user.pending_requests.each do |request|  %>
-                <p> <%= request.reason %></p>
-                <% end %>
-            </div>
             <div class="date_box" id='external-events'>
                 <h4 class="textarea">Shifts</h4>
+                <div class="shiftTemplatesList">
                 <% current_user.company.shift_templates.each do |shift_template| %>
-                <div class='external-event' data-shift-template-id="<%=shift_template.id  %>"><%=shift_template.time_string  %></div>
-
+                    <div class='external-event' data-shift-template-id="<%=shift_template.id  %>"><%=shift_template.time_string  %></div>
                 <% end %>
+                </div>
+                <button id="newShift" class='btn addShift' onclick="showShiftForm()">New Shift Type</button>
+                <div class="shiftTemplateForm" hidden>
+                    <h4>Create Shift Type</h4>
+                    <label>Start Time</label>
+                    <select id="shiftTempStartTime">
+                        <%= options_for_select(time_options, '450') %>
+                    </select>
+                    <br>
+                    <label>End Time</label>
+                    <select id="shiftTempEndTime">
+                        <%= options_for_select(time_options, '1050') %>
+                    </select>
+                    <br>
+                    <button id="createShift" class='btn addShift' onclick="createShift()">Add</button>
+                    <button id="createShift" class='btn addShift' onclick="cancelCreateShift()">Cancel</button>
+                </div>
             </div>
 
         </div>
@@ -60,7 +96,8 @@
         </div>
     </div>
     <script type="text/javascript">
-        var userID = <%= current_user.id  %>;
+        var userID = <%= current_user.id  %>,
+            companyID = <%= current_user.company.id  %>;
     </script>
     <!-- javascript -->
 </body>
