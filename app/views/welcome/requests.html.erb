@@ -16,7 +16,6 @@
         <div class="logout" id="users_profile_image">
             <%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %>
         </div>
-        <div class="requests" id="users_profile_image"><a href="/requests">Requests</a></div>
         <% end %>
     </div>
     <div class="container_dash tall">
@@ -29,22 +28,6 @@
                         <div class="employee hasPendingRequest">
                             <input type="hidden" value=<%= employee.id %> class="employeeID">
                             <div class='employeeName'><%= employee.first_name %> </div>
-                            <div class='employeeRequestNotifier'>Request Pening Approval</div>
-                            <div class='employeeRequests' hidden>
-                                <% employee.request_pending_approval.each do |request|  %>
-                                <div class="employeeRequest">
-                                <hr class="requestSplit">
-                                    <div class="requestShift">
-                                        <%= request.shift.time_string %> on <%= request.shift.date %>
-                                    </div>
-                                    <div class="requestReason"> 
-                                        Reason: <%= request.reason %>
-                                    </div>
-                                    <button onclick="approveRequest(<%= request.id %>, this)">Approve</button>
-                                    <button onclick="denyRequest(<%= request.id %>, this)">Deny</button>
-                                </div>
-                                <% end %>
-                            </div>
                         </div>
                     <% else %>
                         <div class="employee">
@@ -92,14 +75,15 @@
 
         </div>
         <div class="right_cont">
-            <div class="notify" id="note">
-                Recent Notification
-            </div>
-            <input type="hidden" value=<%= current_user.id %> id="employeeID">
-            <div id='calendar'></div>
+            <div class="requestsList">
+            <h2>Requests for <%=current_user.company.name %></h2>
+            <% current_user.company.each do |request|%>
+                <% if request.has_requests_pending_approval %>
+                <% end %>
+            <% end %>
 
-            <div style='clear:both'></div>
             </div>
+        </div>
             <div class="line"></div>
         </div>
     </div>
