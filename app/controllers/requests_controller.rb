@@ -12,6 +12,22 @@ class RequestsController < ApplicationController
 	def edit
 	end
 
+	def approve
+		request = Request.find(params[:id])
+		request.update({admin_id: params[:admin_id]})
+		respond_to do |format|
+		  format.json { render json: {request:request }}
+		end
+	end
+
+	def deny
+		request = Request.find(params[:id])
+		request.update({pending: false, admin_id: params[:admin_id]})
+		respond_to do |format|
+		  format.json { render json: {request:request }}
+		end
+	end
+
 	def create
 		@request = Request.new(request_params)
 
