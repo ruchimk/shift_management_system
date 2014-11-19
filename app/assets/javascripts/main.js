@@ -39,11 +39,17 @@ function check(form) { /*function to check userid & password*/
     };
 }
 
-
+// function addDate(){
+//     $('#newShift').click(function(){
+//         $('.shiftTemplateForm').slideUp('slow' , function(){
+//         });
+//     });
+// }
 
 $(function() {
     animate_popup();
     animate_slogan();
+    // addDate();
 });
 
 

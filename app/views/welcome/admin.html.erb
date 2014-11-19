@@ -7,17 +7,6 @@
 </head>
 
 <body>
-    <div class="header">
-        <% if current_user %>
-        <div class="div_logo">
-            <img src="assets/logo.png" alt="logo" class="logo">
-        </div>
-        <div class="signin" id="users_profile_image"><%= current_user.email %></div>
-        <div class="logout" id="users_profile_image">
-            <%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %>
-        </div>
-        <% end %>
-    </div>
     <div class="container_dash tall">
         <div class="left_cont">
             <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">
@@ -36,7 +25,7 @@
                                     <div class="requestShift">
                                         <%= request.shift.time_string %> on <%= request.shift.date %>
                                     </div>
-                                    <div class="requestReason"> 
+                                    <div class="requestReason">
                                         Reason: <%= request.reason %>
                                     </div>
                                     <button onclick="approveRequest(<%= request.id %>, this)">Approve</button>
@@ -62,7 +51,7 @@
                     <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
                     <button type="submit" class="btn_shift_change">submit</button>
                 <% end %>
-                
+
             </div>
             <div class="date_box" id='external-events'>
                 <h4 class="textarea">Shifts</h4>
@@ -74,12 +63,12 @@
                 <button id="newShift" class='btn addShift' onclick="showShiftForm()">New Shift Type</button>
                 <div class="shiftTemplateForm" hidden>
                     <h4>Create Shift Type</h4>
-                    <label>Start Time</label>
+                    <label class="start_label">Start Time</label>
                     <select id="shiftTempStartTime">
                         <%= options_for_select(time_options, '450') %>
                     </select>
                     <br>
-                    <label>End Time</label>
+                    <label class="end_label">End Time</label>
                     <select id="shiftTempEndTime">
                         <%= options_for_select(time_options, '1050') %>
                     </select>

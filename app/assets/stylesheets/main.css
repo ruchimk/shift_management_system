@@ -158,6 +158,22 @@ a{
     transition:background 1s;
     color:#8D8D8D;
 }
+.input_btn{
+    width:405px;
+    height:30px;
+    border:0;
+    border-radius: 3px;
+    padding:3px;
+    margin-top:20px;
+    font-family:helveticaNeue-thin;
+    font-size:12pt;
+    background-color:#404041;
+    transition:background 1s;
+    color:#8D8D8D;
+}
+.signup_container:hover .input_btn{
+    background-color: #235280;
+}
 .signin_popup:hover .btn{
     background-color: #235280;
 }
