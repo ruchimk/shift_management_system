@@ -186,19 +186,19 @@ p.textarea{
     width: 137px;
     background-color:#505050;
     color:#ccc;
-    padding: 5px 0px 7px 9px;
+    padding: 5px 0px 5px 9px;
     cursor:pointer;
     border-bottom-right-radius: 0.3em;
     background-position:20px;
 }
 #note:before{
-    position:fixed;
+    position:absolute;
     width: 30px;
     height: 30px;
     margin: -5px -39px;
     content:"";
     background-size: 30px 28px;
-    background-image:url('../images/ding.png');
+    background-image:url('ding.png');
     border-bottom-left-radius: 0.3em;
     background-color: #EC423D;
     background-position:0px;
@@ -237,4 +237,7 @@ p.textarea{
     position:relative;
     top:15px;
 }
-
+.shiftsForPickUp>h4{
+    margin-left:28px;
+    color:#707070;
+}
