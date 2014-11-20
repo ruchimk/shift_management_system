@@ -123,6 +123,25 @@
                 <% end %>
             <% end %>
         </div>
+        <div class="shiftsForPickUp">
+            <h4>Shifts available to give</h4>
+            <% current_user.shifts_to_give.each do |request| %>
+                <% if current_user.shifts_array.include? "#{request.shift.shift_template_id} - #{request.shift.date}" %>
+                <div class="pickUpShift">
+                    <hr class="requestSplit">
+                    <div class="pendingRequestType"><%= request.type_string %> </div>
+                    <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
+                    <div class="pendingRequestTime"><%= request.shift.time_string %></div>
+                    <div class="pendingRequestTime"><%= request.shift.id %></div>
+                    <div class="pendingRequestReason"><%= request.reason %></div>
+                    <%= form_for request, url: give_shift_path(request.id) do |f| %>
+                        <%= f.hidden_field(:requester_id, value: current_user.id) %>
+                        <%= f.submit value:"Give Shift" %>
+                    <% end %>
+                </div>
+                <% end %>
+            <% end %>
+        </div>
     </div>
     <div class="right_cont">
         <div class="notify" id="note">
