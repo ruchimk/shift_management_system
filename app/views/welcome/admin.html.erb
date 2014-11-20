@@ -120,7 +120,6 @@
         </div>
         <input type="hidden" value=<%= current_user.id %> id="employeeID">
         <div id='calendar'></div>
-        <% if current_user.has_shifts_to_pick_up %>
             <div class="shiftsForPickUp">
                 <h4>Shifts for Pick Up</h4>
                 <% current_user.shifts_for_pick_up.each do |request| %>
@@ -139,8 +138,6 @@
                     <% end %>
                 <% end %>
             </div>
-        <% end %>
-        <% if current_user.has_shifts_to_give %>
             <div class="shiftsToGive">
                 <h4>Shifts available to give</h4>
                 <% current_user.shifts_to_give.each do |request| %>
@@ -160,7 +157,6 @@
                     <% end %>
                 <% end %>
             </div>
-        <% end %>
         </div>
         <div style='clear:both'></div>
     </div>
