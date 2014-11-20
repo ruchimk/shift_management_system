@@ -91,4 +91,20 @@ class User < ActiveRecord::Base
     end
     shifts
   end
+
+  def has_shifts_to_pick_up
+    has = false
+    shifts_for_pick_up.each do |request|
+      has = true if !(self.shifts_array.include? "#{request.shift.shift_template_id} - #{request.shift.date}")
+    end
+    has
+  end
+
+  def has_shifts_to_give
+    has = false
+    shifts_to_give.each do |request|
+      has = true if (self.shifts_array.include? "#{request.shift.shift_template_id} - #{request.shift.date}")
+    end
+    has
+  end
 end
