@@ -24,6 +24,7 @@
                             <input type="hidden" value=<%= employee.id %> class="employeeID">
                             <div class='employeeName'><%= employee.first_name %> </div>
                             <div class='employeeRequestNotifier'>All User Requests</div>
+
                             <div class='employeeRequests' hidden>Created Requests
                                 <% employee.made_requests.each do |request|  %>
                                 <div class="employeeRequest">
@@ -33,6 +34,12 @@
                                     </div>
                                     <div class="requestReason">
                                         Reason: <%= request.reason %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Requester: <%= request.requester ? request.requester.first_name : "Not Yet Set" %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Accepter: <%= request.accepter ? request.accepter.first_name : "Not Accepted"  %>
                                     </div>
                                 </div>
                                 <% end %>
@@ -47,6 +54,12 @@
                                     <div class="requestReason">
                                         Reason: <%= request.reason %>
                                     </div>
+                                    <div class="requestReason">
+                                        Requester: <%= request.requester ? request.requester.first_name : "Not Yet Set" %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Accepter: <%= request.accepter ? request.accepter.first_name : "Not Accepted"  %>
+                                    </div>
                                 </div>
                                 <% end %>
                             </div>
@@ -59,6 +72,15 @@
                                     </div>
                                     <div class="requestReason">
                                         Reason: <%= request.reason %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Requester: <%= request.requester ? request.requester.first_name : "Not Yet Set" %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Accepter: <%= request.accepter ? request.accepter.first_name : "Not Accepted"  %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Approved By: <%=request.admin ?  request.admin.first_name : "Not yet Approved" %>
                                     </div>
                                 </div>
                                 <% end %>
