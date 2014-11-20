@@ -15,7 +15,8 @@
     </div>
     <div class="container_dash tall">
         <div class="left_cont">
-            <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar">
+            <%= image_tag current_user.avatar.url(:square), :class=>"avatar" %>
+     <!--        <img src="assets/admin_avatar.png" alt="avatar_image" class="avatar"> -->
             <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
             <div class="employeesList">
                 <% current_user.company.users.each do |employee|%>
@@ -31,7 +32,7 @@
                     <%= f.text_area :reason, {class: "text_area_box", placeholder: "Please type your reason in here!"} %>
                     <button type="submit" class="btn_shift_change">submit</button>
                 <% end %>
-                
+
             </div>
             <div class="pendingRequests">
                 <% current_user.pending_requests.each do |request|  %>
