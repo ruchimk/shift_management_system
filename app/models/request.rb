@@ -7,4 +7,8 @@ class Request < ActiveRecord::Base
   def type_string
     availability ? "Available to Pick Up" : "Change Current Shift"
   end
+
+  def approved_string
+    admin ? "Approved by #{self.admin.first_name}" : "Pending Approval"
+  end
 end

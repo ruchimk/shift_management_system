@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
     where(is_admin: true)
   end
 
+  def request_for_charts
+    requests = []
+    made_requests.each { |reqst| requests << {name: reqst.type_string, data:reqst.shift.date} }
+    requests
+  end
   def self.employees
     where(is_admin: false)
   end
@@ -26,7 +31,10 @@ class User < ActiveRecord::Base
   def send_welcome_email
     UserNotifier.welcome_email(self).deliver()
   end
-
+  def hours_by_month
+    assigned_shifts.group_by_week(:date)
+  end
+  
   def assigned_shifts_hash
     assigned_shift_array = []
     assigned_shifts.where(set:true).each do |shift|

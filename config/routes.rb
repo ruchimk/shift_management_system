@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/reports", to: "shifts#reports"
+  get "/userReport/:user_id", to: "shifts#userReports"
   post "/approve_request", to: "requests#approve"
   post "/deny_request", to: "requests#deny"
   post "/assign_shift", to: "shifts#assign_shift"

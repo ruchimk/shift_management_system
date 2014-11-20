@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'groupdate'
+gem "chartkick"
 gem 'rails_12factor', group: :production
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
