@@ -2,6 +2,7 @@
 
 ##About Us
 Shiftable allows employess to switch shifts with other employees when needed. We provide a reliable, convenient, and simple platform for employees and shift-managers to manage, share and edit shift schedules. 
+At Shiftable, we believe that requesting shift change should be <strong>easy, convenient, and reliable.</strong>. We understand the importance of having a dependable online scheduling tool in today's always-connected world. 
 
 ##Documentation
 Shiftable is a group project built on Ruby on Rails & JavaScript for General Assembly's Web Development Immersive 2 in Washington, DC.
@@ -64,3 +65,5 @@ EXTRAS
 If you have questions about how this website was built, or suggestions for how it could be improved, please contact us.
 
 Take a look at our [ERD] (http://rarmv.herokuapp.com/show?utf8=%E2%9C%93&start_url=https%3A%2F%2Fgithub.com%2FBabakadam121%2Fshift_management_system)
+
+Visit [Shiftable] (http://shiftable1.heroku.com)!
