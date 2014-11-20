@@ -98,6 +98,12 @@
                 <h4>Pending Requests</h4>
                 <% current_user.pending_requests.each do |request|%>
                     <div class="pendingRequests">
+                        <% if request.admin %>
+                            <div class="approvedRequest"><%= request.approved_string %></div>
+                        <% else %>
+                            <div class="requestPendingApproval"><%= request.approved_string %></div>
+                        <% end %>
+
                         <div class="pendingRequestType"><%= request.type_string %> </div>
                         <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
                         <div class="pendingRequestTime"><%= request.shift.time_string %></div>
