@@ -53,10 +53,11 @@ EXTRAS
 
 ##Acknowledgements
  Team members include:
- [Erwin Rosas] (https://github.com/eerrad213): Back-end lead
- [Babak Pouradam] (https://github.com/Eldwick): Front-end lead<
- [James Jalandoni] (https://github.com/Babakadam121): Project Lead 
- [Ruchi Malik] (https://github.com/ruchimk): Project Manager
+ <ul>
+ <li>[Erwin Rosas] (https://github.com/eerrad213): Back-end lead </li>
+ <li>[Babak Pouradam] (https://github.com/Babakadam121): Front-end lead </li>
+ <li> [James Jalandoni] (https://github.com/Eldwick ): Project Lead </li>
+ <li>[Ruchi Malik] (https://github.com/ruchimk): Project Manager</li>
 
 
 ##Contact
