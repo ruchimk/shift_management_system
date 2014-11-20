@@ -1,7 +1,7 @@
 #Shiftable
 
 ##About Shiftable
-Shiftable allows employess to switch shifts with other employees when needed. This app makes it easy for employees and shift-managers to manage, share and edit shift schedules. 
+Shiftable allows employess to switch shifts with other employees when needed. We provide a reliable, convenient, and simple platform for employees and shift-managers to manage, share and edit shift schedules. 
 
 ##Documentation
 This app is the second group project part of General Assembly's Web Developmenet Immersive program. The site will be deployed to Heroku and an address will be provided.
@@ -14,6 +14,9 @@ This app is the second group project part of General Assembly's Web Developmenet
 * Rspec, Capybara, and FactoryGirl for testing
 * HTML5/CSS3
 * Javascript and jQuery
+* AJAX
+* Action Mailer
+* Paperclip
 
 
 ##User stories
@@ -49,7 +52,7 @@ EXTRAS
 
 
 ##Acknowledgements
-This project was a group project by James Jalandoni, Babak Pouradam, Erwin Rojas and Ruchi malik
+This project was a group project by James Jalandoni, Babak Pouradam, Erwin Rojas and Ruchi Malik
 
 ##Contact
 If you have questions about how this website was built, or suggestions for how it could be improved, please contact us.
