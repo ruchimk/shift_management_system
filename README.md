@@ -1,6 +1,6 @@
 #Shiftable
 
-##About Shiftable
+##About Us
 Shiftable allows employess to switch shifts with other employees when needed. We provide a reliable, convenient, and simple platform for employees and shift-managers to manage, share and edit shift schedules. 
 
 ##Documentation
@@ -49,15 +49,15 @@ EXTRAS
 
 12) Admins can set restrictions of employees so that they cannot request any further shift changes for the next month.
 
-
+13) Integrate Google Calendar API (Post action) so logged in user can 
 
 ##Acknowledgements
  Team members include:
-        <ul class='team'>
-            <li><a href="https://github.com/eerrad213">Erwin Rosas</a><br>as the Back-end lead,</li>
-            <li><a href="https://github.com/Babakadam121">Babak Pouradam</a><br>as the Front-end lead</li>
-            <li><a href="https://github.com/Eldwick">James Jalandoni</a><br>as Project Lead </li>
-            <li><a href="https://github.com/ruchimk">Ruchi Malik</a><br>as Project Manager.</li>
+ [Erwin Rosas] (https://github.com/eerrad213): Back-end lead
+ [Babak Pouradam] (https://github.com/Eldwick): Front-end lead<
+ [James Jalandoni] (https://github.com/Babakadam121): Project Lead 
+ [Ruchi Malik] (https://github.com/ruchimk): Project Manager
+
 
 ##Contact
 If you have questions about how this website was built, or suggestions for how it could be improved, please contact us.
