@@ -6,6 +6,14 @@ class ShiftsController < ApplicationController
     end
   end
 
+  def reports
+  end
+
+  def userReports
+    @user = User.find(params[:user_id])
+    render 'user_report', layout: false
+  end
+
   private
 
   def shift_params

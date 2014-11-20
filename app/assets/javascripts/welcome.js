@@ -1,3 +1,32 @@
+function makeDaysDroppable() {
+  $( ".fc-day" ).not($(".fc-past")).droppable({
+    hoverClass: "hoverStuff",
+    refreshPositions: true, //added line
+     drop: function( event, ui ) {
+        var copy = $(ui.draggable.context).clone().text(),
+            copyID = $(ui.draggable.context).data("shift-template-id")
+            shift = $("<p class='external-event eventOnCalendar' data-template-id='"+copyID+"'>"+copy+"</p>"),
+            date = $( this ),
+            employeeID = $("#employeeID").val();
+        if($(".external-event[data-template-id='"+copyID+"']", this).length == 0){
+          date
+             .addClass( "ui-state-highlight" )
+               .append(shift);
+             shift.click(function() {
+               this_div = $(this)
+               $('#requestBox').show()
+               requestHeader = "Shift Change for " + this_div.text() + " on " + this_div.parent().data('date')
+               $('.request_header').text(requestHeader)
+               $("#request_shift_id").val($(this).data("id"))
+             })
+        }
+        $.post("/assign_shift", {shift: {employee_id:employeeID, date:date.data('date'), shift_template_id:copyID}}, function(data){
+        })
+      }
+
+
+   });
+}
 function approveRequest(id, element) {
   event.stopPropagation();
 
@@ -53,6 +82,11 @@ function getEmployeeShifts(employeeID) {
 }                         
 
 function ready() {
+  $(".employeeID").each(function() {
+    if (this.value == userID) {
+      $(this).parent().addClass("activeEmployee")
+    }
+  })
   $('.hasPendingRequest').click(function () {
     var notifier = $('.employeeRequestNotifier', this),
         requests = $('.employeeRequests', this);
@@ -85,6 +119,11 @@ function ready() {
 
   $('#calendar').fullCalendar()
 
+  $(".fc-button").click(function() {
+    employeeID = $("#employeeID").val()
+    getEmployeeShifts(employeeID)
+    makeDaysDroppable()
+  })
   $(".fc-day").click(function () {
     if (($(".eventOnCalendar", this).length == 0)) {
       var this_element = $(this),
@@ -123,34 +162,7 @@ function ready() {
 
   });
 
-  $( ".fc-day" ).droppable({
-    hoverClass: "hoverStuff",
-    refreshPositions: true, //added line
-     drop: function( event, ui ) {
-        var copy = $(ui.draggable.context).clone().text(),
-            copyID = $(ui.draggable.context).data("shift-template-id")
-            shift = $("<p class='external-event eventOnCalendar' data-template-id='"+copyID+"'>"+copy+"</p>"),
-            date = $( this ),
-            employeeID = $("#employeeID").val();
-        if($(".external-event[data-template-id='"+copyID+"']", this).length == 0){
-          date
-             .addClass( "ui-state-highlight" )
-               .append(shift);
-             shift.click(function() {
-               this_div = $(this)
-               $('#requestBox').show()
-               requestHeader = "Shift Change for " + this_div.text() + " on " + this_div.parent().data('date')
-               $('.request_header').text(requestHeader)
-               $("#request_shift_id").val($(this).data("id"))
-             })
-        }
-        $.post("/assign_shift", {shift: {employee_id:employeeID, date:date.data('date'), shift_template_id:copyID}}, function(data){
-        })
-      }
-
-
-   });
-
+  makeDaysDroppable()
   /* initialize the calendar
   -----------------------------------------------------------------*/
 

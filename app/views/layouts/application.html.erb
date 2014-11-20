@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag '//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.0/fullcalendar.min.css'%>
   <%= stylesheet_link_tag'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
   <script src="https://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.0/fullcalendar.min.js"></script>
@@ -23,6 +24,7 @@
         <div class="logout" id="users_profile_image">
             <%= link_to "Log Out", destroy_user_session_path, method: "DELETE" %>
         </div>
+        <div class="requests" id="users_profile_image"><a href="/reports">Reports</a></div>
         <div class="requests" id="users_profile_image"><a href="/requests">Requests</a></div>
         <% else %>
         <div class="signin" id="users_profile_image">Sign in</div>

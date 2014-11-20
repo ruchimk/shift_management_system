@@ -84,6 +84,15 @@
     border-width: 2px;
     margin: 0;
 }
+.fc-past {
+    background-color: #ccc;
+}
+.approvedRequest {
+    color: green;
+}
+.requestPendingApproval {
+    color: yellow;
+}
 .employeeName {
     height:30px;
     border:0;

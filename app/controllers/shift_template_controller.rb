@@ -11,6 +11,7 @@ class ShiftTemplateController < ApplicationController
 
   private
   def shift_template_params
-    params.require(:shift_template).permit(:start_time, :end_time, :company_id)
+    params[:shift_template][:duration] = params[:shift_template][:end_time].to_i - params[:shift_template][:start_time].to_i
+    params.require(:shift_template).permit(:start_time, :end_time, :company_id, :duration)
   end
 end
