@@ -56,3 +56,5 @@ This project was a group project by James Jalandoni, Babak Pouradam, Erwin Rojas
 
 ##Contact
 If you have questions about how this website was built, or suggestions for how it could be improved, please contact us.
+
+Take a look at our [ERD] (http://rarmv.herokuapp.com/show?utf8=%E2%9C%93&start_url=https%3A%2F%2Fgithub.com%2FBabakadam121%2Fshift_management_system)
