@@ -1,6 +1,6 @@
 <div class="container_dash tall">
     <div class="left_cont">
-        <%= image_tag("admin_avatar.png", class: "avatar") %>
+        <%= image_tag current_user.avatar.url(:thumb), :class=>"avatar" %>
         <span class="admin_name" ><%=current_user.first_name %> <%=current_user.last_name %></span>
         <% if current_user.is_admin %>
             <div class="employeesList">
