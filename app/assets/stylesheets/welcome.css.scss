@@ -1,9 +1,10 @@
 // Place all the styles related to the Welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 .external-event.eventOnCalendar{
   font-size: 11px;
+  z-index: 9999;
+  height: auto;
 }
    #wrap {
        width: 1100px;
@@ -32,8 +33,6 @@
        color: #535965;
        font-size: .85em;
        cursor: pointer;
-       }
-    .external-event:hover { /* try to mimick the look of a real event */
        }
 
 
