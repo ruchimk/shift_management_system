@@ -11,6 +11,10 @@ class User < ActiveRecord::Base
   has_many :assigned_shifts, class_name: "Shift", foreign_key: "employee_id"
   has_many :managed_shifts, class_name: "Shift", foreign_key: "admin_id"
 
+
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "admin_avatar.png"
+  validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
+
   def self.admins
     where(is_admin: true)
   end

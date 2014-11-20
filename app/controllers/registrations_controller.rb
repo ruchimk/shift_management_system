@@ -15,7 +15,6 @@ class RegistrationsController < Devise::RegistrationsController
 
   def create
     build_resource(sign_up_params)
-
     resource_saved = resource.save
     yield resource if block_given?
     if resource_saved
@@ -61,6 +60,10 @@ class RegistrationsController < Devise::RegistrationsController
       respond_with resource
     end
   end
+  def cancel
+    expire_data_after_sign_in!
+    redirect_to new_registration_path(resource_name)
+  end
 
   private
 
@@ -71,7 +74,7 @@ class RegistrationsController < Devise::RegistrationsController
   def sign_up_params
     company = Company.create(name:params[:company_name])
     params[:user][:company_id] = company.id
-    params.require(:user).permit(:first_name, :last_name, :is_admin, :company_id, :email, :password, :password_confirmation)
+    params.require(:user).permit(:first_name, :last_name, :is_admin, :company_id, :email, :password, :password_confirmation, :avatar)
   end
 
 end
