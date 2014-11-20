@@ -1,6 +1,6 @@
 #Shiftable 
 
-##Visit [Shiftable] (http://shiftable1.heroku.com)!
+###Visit [Shiftable] (http://shiftable1.heroku.com)!
 
 ##About Us
 Shiftable allows employess to switch shifts with other employees when needed. We provide a reliable, convenient, and simple platform for employees and shift-managers to manage, share and edit shift schedules. 
