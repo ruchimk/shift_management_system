@@ -17,11 +17,11 @@
 	<%=@request.admin ?  @request.admin.first_name : "Not yet Approved" %><br>
 	<strong>Date and time:</strong>
 	Request for <%= @request.shift.date %><br>
-</p>	
+</p>
 
 <% if @request.availability && @request.accepter != current_user %>
 		<%= form_for @request, url: give_shift_path(@request) do |f| %>
-		
+
 		  <div class="field">
 		  	<%= f.hidden_field(:requester_id, value: current_user.id) %>
 		    <%= f.submit "Give Shift"%>
