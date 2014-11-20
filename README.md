@@ -4,7 +4,7 @@
 Shiftable allows employess to switch shifts with other employees when needed. We provide a reliable, convenient, and simple platform for employees and shift-managers to manage, share and edit shift schedules. 
 
 ##Documentation
-This app is the second group project part of General Assembly's Web Developmenet Immersive program. The site will be deployed to Heroku and an address will be provided.
+Shiftable is a group project built on Ruby on Rails & JavaScript for General Assembly's Web Development Immersive 2 in Washington, DC.
 
 ##Technologies used
 * Ruby 2.1.2
@@ -52,7 +52,12 @@ EXTRAS
 
 
 ##Acknowledgements
-This project was a group project by James Jalandoni, Babak Pouradam, Erwin Rojas and Ruchi Malik
+ Team members include:
+        <ul class='team'>
+            <li><a href="https://github.com/eerrad213">Erwin Rosas</a><br>as the Back-end lead,</li>
+            <li><a href="https://github.com/Babakadam121">Babak Pouradam</a><br>as the Front-end lead</li>
+            <li><a href="https://github.com/Eldwick">James Jalandoni</a><br>as Project Lead </li>
+            <li><a href="https://github.com/ruchimk">Ruchi Malik</a><br>as Project Manager.</li>
 
 ##Contact
 If you have questions about how this website was built, or suggestions for how it could be improved, please contact us.
