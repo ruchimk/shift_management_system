@@ -38,14 +38,18 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-
-gem "rspec-rails", :group => [:test, :development]
-group :test do
+group :development, :test do
+  gem 'better_errors'
+  gem "binding_of_caller" # for better_errors
   gem "factory_girl_rails"
-  gem "capybara"
   gem "guard-rspec"
+  gem "rspec-rails"
   gem "pry-rails"
   gem 'faker', '~> 1.4.3'
+end
+
+group :test do
+  gem "capybara"
   gem 'rspec-activemodel-mocks'
 end
 

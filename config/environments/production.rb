@@ -88,13 +88,6 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-  config.paperclip_defaults = {
-  :storage => :s3,
-  :s3_credentials => {
-    :bucket => ENV['shiftable'],
-    :access_key_id => ENV['AKIAI27H6KM4IGJ7AWKQ'],
-    :secret_access_key => ENV['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']
-  }
-}
+
 
 end

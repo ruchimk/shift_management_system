@@ -13,8 +13,8 @@ class User < ActiveRecord::Base
   has_many :managed_shifts, class_name: "Shift", foreign_key: "admin_id"
 
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "admin_avatar.png", :s3_host_name => "s3-us-west-2.amazonaws.com"
-  validates_attachment_content_type :avatar, :content_type =>  /\Aimage\/.*\Z/
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "admin_avatar.png"
+  validates_attachment :avatar, :content_type => { :content_type => ["image/jpeg", "image/gif", "image/png"] }
 
   def self.admins
     where(is_admin: true)
