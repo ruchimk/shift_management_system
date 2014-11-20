@@ -45,16 +45,19 @@ class User < ActiveRecord::Base
   def has_pending_requests
     pending_requests.length > 0
   end
+
   def request_pending_approval
     accepted_requests_array = self.accepted_requests.where(pending: true, admin_id: nil)
     made_requests_array = self.made_requests.where(pending: true, admin_id: nil)
     accepted_requests_array + made_requests_array
   end
 
-  def request_with_approval
-    accepted_requests_array = self.accepted_requests.where(pending: true, admin_id: !nil)
-    made_requests_array = self.made_requests.where(pending: true, admin_id: !nil)
-    accepted_requests_array + made_requests_array
+  def made_request_with_approval
+    self.made_requests.where(pending: true, admin_id: !nil)
+  end
+
+  def given_request_with_approval
+    self.accepted_requests.where(pending: true, admin_id: !nil)
   end
 
   def has_requests_pending_approval
@@ -65,10 +68,27 @@ class User < ActiveRecord::Base
     shifts = []
     company.users.each do |user|
       if user.id != self.id
-        shifts << user.request_with_approval
+        shifts << user.made_request_with_approval
       end
     end
     shifts.flatten
   end
   
+  def shifts_to_give
+    shifts = []
+    company.users.each do |user|
+      if user.id != self.id
+        shifts << user.given_request_with_approval
+      end
+    end
+    shifts.flatten
+  end
+
+  def shifts_array
+    shifts = []
+    assigned_shifts.each do |shift|
+      shifts << "#{shift.shift_template_id} - #{shift.date}"
+    end
+    shifts
+  end
 end

@@ -73,8 +73,12 @@ class RequestsController < ApplicationController
 	end
 
 	def give_shift
-		@request = Request.find(params[:id])
-		@request.update(give_shift_params)
+		request = Request.find(params[:id])
+		request.update(give_shift_params)
+		shift = Shift.find(request.shift_id)
+		old_shift = Shift.find_by(employee_id:params[:request][:requester_id], date: shift.date, shift_template_id: shift.shift_template_id)
+		old_shift.destroy
+		shift.update(employee_id: request.accepter_id, set:true)
 
 		redirect_to root_path
 	end
@@ -93,7 +97,8 @@ class RequestsController < ApplicationController
 	end
 
 	def give_shift_params
-		params.require(:request).permit(:requester_id)
+		params[:request][:pending] = false
+		params.require(:request).permit(:requester_id, :pending)
 	end
 
 	def approve_shift_params
