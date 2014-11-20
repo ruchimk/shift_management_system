@@ -21,7 +21,6 @@
     width: 100%;
 }
 .employee {
-    width:200px;
     padding:1px 10px;
     margin:0px 5px;
 }
@@ -47,6 +46,13 @@
     font-size: 15px;
     z-index: 9999;
 }
+.employeeApprovedRequest {
+    background-color: #7BDAA7;
+    width: calc(100%-10px);
+    padding: 5px;
+    font-size: 15px;
+    z-index: 9999;
+}
 .requestSplit {
     border-width: 2px;
     margin: 0;
@@ -54,7 +60,6 @@
 .employeeName {
     height:30px;
     border:0;
-    width:180px;
     font-family:helveticaNeue-light;
     font-size:12pt;
     color:#999;

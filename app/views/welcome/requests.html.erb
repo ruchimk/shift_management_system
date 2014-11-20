@@ -15,38 +15,58 @@
 
         <div class="right_cont">
             <div class="requestsList">
-                <% if current_user.company %>
-            <h2>Requests for <%=current_user.company.name %></h2>
-            <table>
-                <tr>
-                    <th>Requests</th>
-                    <th>Requester</th>
-                    <th>Accepter</th>
-                    <th>Apporved by Admin</th>
-                    <th colspan="3"></th>
-                </tr>
-              
-                <% if @requests.empty? %>
-                    <td class="noposts">No Requests available</td>
-                <% else %>
-
-                <% @requests.each do |request| %>
-                    <tr>
-                        <td><%= request.id %></td>
-                        <td><%= request.requester ? request.requester.first_name : "Not Yet Set" %></td>
-                        <td><%= request.accepter ? request.accepter.first_name : "Not Accepted"  %></td>
-                        <td><%= request.admin ? request.admin.first_name : "Not yet Approved" %></td>
-                        <td><%= link_to 'Show', request_path(request) %></td>
-                        <% if current_user.try(:is_admin) %>
-                        <td><%= link_to 'Destroy', request_path(request),
-                            method: :delete, data: { confirm: 'Are you sure you wish to delete this?' } %></td>
-                        <% end %>
-                    </tr>
-                <% end %>
-              <% end %>
-            </table>
+                <h2>Requests for <%=current_user.company.name %></h2>
             </div>
-            <% end %>
+            <div class="employeesList">
+                <% current_user.company.users.each do |employee|%>
+                    <% if employee.has_requests_pending_approval %>
+                        <div class="employee hasPendingRequest">
+                            <input type="hidden" value=<%= employee.id %> class="employeeID">
+                            <div class='employeeName'><%= employee.first_name %> </div>
+                            <div class='employeeRequestNotifier'>All User Requests</div>
+                            <div class='employeeRequests' hidden>Created Requests
+                                <% employee.made_requests.each do |request|  %>
+                                <div class="employeeRequest">
+                                <hr class="requestSplit">
+                                    <div class="requestShift">
+                                        <%= request.shift.time_string %> on <%= request.shift.date %> for request: <%= request.id %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Reason: <%= request.reason %>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                            <div class='employeeRequests' hidden>Available Requests
+                                <% employee.accepted_requests.each do |request|  %>
+                                <div class="employeeRequest">
+                                <hr class="requestSplit">
+                                    <div class="requestShift">
+                                        <%= request.shift.time_string %> on <%= request.shift.date %> for request: <%= request.id %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Reason: <%= request.reason %>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                            <div class='employeeRequests' hidden>Approved Requests
+                                <% employee.approved_requests.each do |request|  %>
+                                <div class="employeeApprovedRequest">
+                                <hr class="requestSplit">
+                                    <div class="requestShift">
+                                        <%= request.shift.time_string %> on <%= request.shift.date %> for request: <%= request.id %>
+                                    </div>
+                                    <div class="requestReason">
+                                        Reason: <%= request.reason %>
+                                    </div>
+                                </div>
+                                <% end %>
+                            </div>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
         </div>
             <div class="line"></div>
     </div>
@@ -58,3 +78,4 @@
 </body>
 
 </html>
+
