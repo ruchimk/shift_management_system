@@ -13,7 +13,7 @@
                             <div class='employeeRequests' hidden>
                                 <% employee.request_pending_approval.each do |request|  %>
                                 <div class="employeeRequest">
-                                <hr class="requestSplit">
+                                    <div class="requestType"><%= request.type_string %> </div>
                                     <div class="requestShift">
                                         <%= request.shift.time_string %> on <%= request.shift.date %>
                                     </div>
@@ -94,11 +94,10 @@
             <% end %>
         </div>
         <% if current_user.has_pending_requests %>
-            <div class="pendingRequests">
+            <div class="pendingRequests_one">
                 <h4>Pending Requests</h4>
                 <% current_user.pending_requests.each do |request|%>
                     <div class="pendingRequests">
-                        <hr class="requestSplit">
                         <div class="pendingRequestType"><%= request.type_string %> </div>
                         <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
                         <div class="pendingRequestTime"><%= request.shift.time_string %></div>
@@ -107,41 +106,7 @@
                 <% end %>
             </div>
         <% end %>
-        <div class="shiftsForPickUp">
-            <h4>Shifts for Pick Up</h4>
-            <% current_user.shifts_for_pick_up.each do |request| %>
-                <div class="pickUpShift">
-                    <hr class="requestSplit">
-                    <div class="pendingRequestType"><%= request.type_string %> </div>
-                    <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
-                    <div class="pendingRequestTime"><%= request.shift.time_string %></div>
-                    <div class="pendingRequestReason"><%= request.reason %></div>
-                </div>
-                <%= form_for request, url: pick_up_shift_path(request.id) do |f| %>
-                    <%= f.hidden_field(:accepter_id, value: current_user.id) %>
-                    <%= f.submit value:"Pick Up Shift" %>
-                <% end %>
-            <% end %>
-        </div>
-        <div class="shiftsForPickUp">
-            <h4>Shifts available to give</h4>
-            <% current_user.shifts_to_give.each do |request| %>
-                <% if current_user.shifts_array.include? "#{request.shift.shift_template_id} - #{request.shift.date}" %>
-                <div class="pickUpShift">
-                    <hr class="requestSplit">
-                    <div class="pendingRequestType"><%= request.type_string %> </div>
-                    <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
-                    <div class="pendingRequestTime"><%= request.shift.time_string %></div>
-                    <div class="pendingRequestTime"><%= request.shift.id %></div>
-                    <div class="pendingRequestReason"><%= request.reason %></div>
-                    <%= form_for request, url: give_shift_path(request.id) do |f| %>
-                        <%= f.hidden_field(:requester_id, value: current_user.id) %>
-                        <%= f.submit value:"Give Shift" %>
-                    <% end %>
-                </div>
-                <% end %>
-            <% end %>
-        </div>
+        
     </div>
     <div class="right_cont">
         <div class="notify" id="note">
@@ -149,9 +114,48 @@
         </div>
         <input type="hidden" value=<%= current_user.id %> id="employeeID">
         <div id='calendar'></div>
-
+        <% if current_user.has_shifts_to_pick_up %>
+            <div class="shiftsForPickUp">
+                <h4>Shifts for Pick Up</h4>
+                <% current_user.shifts_for_pick_up.each do |request| %>
+                    <% if !(current_user.shifts_array.include? "#{request.shift.shift_template_id} - #{request.shift.date}") %>
+                        <div class="pickUpShift">
+                            <hr class="requestSplit">
+                            <div class="pendingRequestUser"><%= request.requester.first_name %> </div>
+                            <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
+                            <div class="pendingRequestTime"><%= request.shift.time_string %></div>
+                            <div class="pendingRequestReason"><%= request.reason %></div>
+                        </div>
+                        <%= form_for request, url: pick_up_shift_path(request.id) do |f| %>
+                            <%= f.hidden_field(:accepter_id, value: current_user.id) %>
+                            <%= f.submit value:"Pick Up Shift" %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </div>
+        <% end %>
+        <% if current_user.has_shifts_to_give %>
+            <div class="shiftsToGive">
+                <h4>Shifts available to give</h4>
+                <% current_user.shifts_to_give.each do |request| %>
+                    <% if current_user.shifts_array.include? "#{request.shift.shift_template_id} - #{request.shift.date}" %>
+                        <div class="pickUpShift">
+                            <hr class="requestSplit">
+                            <div class="pendingRequestUser"><%= request.accepter.first_name %> </div>
+                            <div class="pendingRequestDate"><%= request.shift.date.to_formatted_s(:long) %></div>
+                            <div class="pendingRequestTime"><%= request.shift.time_string %></div>
+                            <div class="pendingRequestTime"><%= request.shift.id %></div>
+                            <div class="pendingRequestReason"><%= request.reason %></div>
+                            <%= form_for request, url: give_shift_path(request.id) do |f| %>
+                                <%= f.hidden_field(:requester_id, value: current_user.id) %>
+                                <%= f.submit value:"Give Shift" %>
+                            <% end %>
+                        </div>
+                    <% end %>
+                <% end %>
+            </div>
+        <% end %>
         <div style='clear:both'></div>
-        <div class="line"></div>
     </div>
 </div>
 
