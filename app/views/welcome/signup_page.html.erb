@@ -12,6 +12,9 @@
         <%= f.text_field :first_name, class: "g_inpt" %>
         <span class="label">Last Name:</span>
         <%= f.text_field :last_name, class: "g_inpt"  %>
+        <span class="label">Profile Picture:</span>
+        <%= f.label :avatar , class: "g_inpt" %><br />
+        <%= f.file_field :avatar %>
         <span class="label">Password:</span>
         <%= f.password_field :password, class: "g_inpt" %>
         <span class="label">Password Confirmation:</span>
@@ -23,3 +26,4 @@
     <% end %>
     </div>
 </div>
+
