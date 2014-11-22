@@ -52,7 +52,7 @@ EXTRAS
 
 12) Admins can set restrictions of employees so that they cannot request any further shift changes for the next month.
 
-13) Integrate Google Calendar API (Post action) so logged in user can 
+13) Integrate Google Calendar API (Post action) so logged in user can have their schedule on their google calendar.
 
 ##Acknowledgements
  Team members include:
@@ -67,3 +67,5 @@ EXTRAS
 If you have questions about how this website was built, or suggestions for how it could be improved, please contact us.
 
 Take a look at our [ERD] (http://rarmv.herokuapp.com/show?utf8=%E2%9C%93&start_url=https%3A%2F%2Fgithub.com%2FBabakadam121%2Fshift_management_system)
+
+[ ![Codeship Status for ruchimk/shift_management_system](https://codeship.com/projects/d47ef230-54a2-0132-36d5-6274f9eea671/status)](https://codeship.com/projects/49226)
